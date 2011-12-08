@@ -1,5 +1,4 @@
 Eventstreams2::Application.routes.draw do
   devise_for :users
-
-  root :to => "home#index"
+  root :to => "pages#home"
 end
