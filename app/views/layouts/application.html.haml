@@ -8,7 +8,7 @@
     %script{:type=>"text/javascript", :src=>"http://html5shim.googlecode.com/svn/trunk/html5.js"}
     = csrf_meta_tag()
     = javascript_include_tag "application", :cache => false
-    = stylesheet_link_tag 'application', :media => 'screen, projection', :cache => false
+    = stylesheet_link_tag 'admin', :media => 'screen, projection', :cache => false
   %body
     %section#eventstreams
       %header
@@ -32,7 +32,7 @@
             %ul
               %li.title= @event.title
               %li.site_link
-                = # link_to event_root_url(:subdomain => @event.subdomain), event_root_url(:subdomain => @event.subdomain)
+                = link_to root_url(:subdomain => @event.subdomain), root_url(:subdomain => @event.subdomain)
                 -unless @event.published
                   %span.published
                     This event is hidden
@@ -40,4 +40,25 @@
       = render :partial => 'layouts/flashes'
       %section.main
         .inner
-          = yield
+          -if signed_in? && @event && @event.valid?
+            %nav#event_content
+              %ul
+                %li= link_to "Event Details", edit_user_event_path(current_user, @event), :class=>'button'
+                / %li= link_to "Menu Order", user_event_event_menus_path(current_user, @event), :class=>'button'
+                / %li= link_to "Pages &amp; Links", user_event_event_pages_path(current_user, @event), :class=>'button'
+                / %li= link_to "Locations", user_event_venues_path(current_user, @event), :class=>'button'
+                / %li= link_to "Speakers", user_event_speakers_path(current_user, @event), :class=>'button'
+                / %li= link_to "Talks", user_event_talks_path(current_user, @event), :class=>'button'
+                / %li= link_to "Tracks", user_event_tracks_path(current_user, @event), :class=>'button'
+                / %li= link_to "News", user_event_event_news_items_path(current_user, @event), :class=>'button'
+                / %li= link_to "Sponsors", user_event_sponsors_path(current_user, @event), :class=>'button'
+                / %li= link_to "Image Assets", user_event_event_assets_path(current_user, @event), :class=>'button'
+                / %li= link_to "Manage Tweets", user_event_tweets_path(current_user, @event), :class=>'button'
+            %section.event_content
+              / -unless @event.menu_order_main.any?
+              /   %p.empty_menu
+              /     Your event's main menu is empty,
+              /     = link_to "add links to content when available", user_event_event_menus_path(current_user, @event)
+              = yield
+          -else
+            = yield
