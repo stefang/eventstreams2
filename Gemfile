@@ -5,6 +5,7 @@ gem 'rails', '3.1.3'
 gem 'mysql2'
 gem 'haml'
 gem 'devise'
+gem 'friendly_id', "~> 4.0.0.beta14"
 
 group :development do
   gem "nifty-generators"
@@ -38,4 +39,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 1.2'
+  gem 'launchy'
 end
+gem "mocha", :group => :test

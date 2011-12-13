@@ -1,10 +1,19 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
   before_filter :define_at_user
+  before_filter :enable_admin_side_menu
   protect_from_forgery
   
   def define_at_user
     @user = current_user
+  end
+  
+  def on_subdomain?
+    request.subdomain.present? && request.subdomain != 'www'
+  end
+  
+  def enable_admin_side_menu
+    @enable_admin_side_menu = true
   end
   
   def get_published_or_owned_event

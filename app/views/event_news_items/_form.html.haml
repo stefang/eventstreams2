@@ -1,0 +1,21 @@
+= form_for [@user, @event, @event_news_item] do |f|
+  = f.error_messages
+  %p
+    = f.label :headline
+    %br
+    = f.text_field :headline
+  %p
+    = f.label :content
+    %br
+    = f.text_area :content
+  %p
+    = f.label :item_date
+    %br
+    = f.text_field :item_date, :class => "datepicker", :value =>@event_news_item.item_date ? @event_news_item.item_date.to_s(:form_display) : Date.today.to_s(:form_display)
+  %p
+    = f.label :published, "Show"
+    %br
+    = f.check_box :published
+  %li
+    %button.button.save{:type => 'submit'}
+      Save

@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:show]
   before_filter :get_owned_event, :only => [:edit, :update, :destroy]
+  skip_before_filter :enable_admin_side_menu, :only => [:index, :new, :create]
   
   def index
     if params[:user_id]
@@ -12,15 +13,16 @@ class EventsController < ApplicationController
   end
 
   def show
-    if request.subdomain.blank?
-      @event = get_owned_event
-    else
+    if on_subdomain?
       get_published_or_owned_event
       if @event.blank?
         render :layout => 'hidden_event', :action => 'hidden_event'
       else
+        @latest_news = @event.published_news_items.find(:all)
         render :layout => 'event'
       end
+    else
+      @event = get_owned_event
     end
   end
 

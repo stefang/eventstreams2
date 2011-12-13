@@ -2,9 +2,9 @@
   %nav#event_admin_bar
     %ul
       -if @event.published?
-        %li=link_to "Event Published", edit_user_event_url(current_user, @event, :subdomain => false)
+        %li=link_to "Event Published", edit_user_event_url(current_user, @event, :host => request.domain)
       -else
-        %li=link_to "Event Hidden", edit_user_event_url(current_user, @event, :subdomain => false)
+        %li=link_to "Event Hidden", edit_user_event_url(current_user, @event, :host => request.domain)
 
 = yield
 

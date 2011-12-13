@@ -26,7 +26,7 @@
               -else
                 %li=link_to t('authentication.sign_in'), new_user_session_path
                 %li=link_to "Sign up", new_user_registration_url
-      -if signed_in? && @event && @event.valid?
+      -if admin_menu_enabled?
         %nav#event_header
           .inner
             %ul
@@ -40,7 +40,7 @@
       = render :partial => 'layouts/flashes'
       %section.main
         .inner
-          -if signed_in? && @event && @event.valid?
+          -if admin_menu_enabled?
             %nav#event_content
               %ul
                 %li= link_to "Event Details", edit_user_event_path(current_user, @event), :class=>'button'
@@ -50,7 +50,7 @@
                 / %li= link_to "Speakers", user_event_speakers_path(current_user, @event), :class=>'button'
                 / %li= link_to "Talks", user_event_talks_path(current_user, @event), :class=>'button'
                 / %li= link_to "Tracks", user_event_tracks_path(current_user, @event), :class=>'button'
-                / %li= link_to "News", user_event_event_news_items_path(current_user, @event), :class=>'button'
+                %li= link_to "News", user_event_event_news_items_path(current_user, @event), :class=>'button'
                 / %li= link_to "Sponsors", user_event_sponsors_path(current_user, @event), :class=>'button'
                 / %li= link_to "Image Assets", user_event_event_assets_path(current_user, @event), :class=>'button'
                 / %li= link_to "Manage Tweets", user_event_tweets_path(current_user, @event), :class=>'button'

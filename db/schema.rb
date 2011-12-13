@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209172950) do
+ActiveRecord::Schema.define(:version => 20111213171557) do
+
+  create_table "event_news_items", :force => true do |t|
+    t.string   "headline"
+    t.text     "content"
+    t.date     "item_date"
+    t.integer  "event_id"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "event_news_items", ["slug"], :name => "index_event_news_items_on_slug", :unique => true
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"
