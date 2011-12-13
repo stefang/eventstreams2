@@ -2,7 +2,7 @@ Feature: Create event news item
   In order to create a new event news item
   A user
   Should be able to sign in and create a new news item in an existing event
-  @wip
+
   Scenario: User creates published news item successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"

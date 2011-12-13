@@ -12,7 +12,10 @@ class Event < ActiveRecord::Base
   validates_format_of :twitter_account, :with => /^@/i, :message => "should have an @ at the start", :allow_blank => true
   
   has_many :owned_news_items, :class_name => 'EventNewsItem', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_date DESC'
+  has_many :owned_event_pages, :class_name => 'EventPage', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
+
   has_many :published_news_items, :class_name => 'EventNewsItem', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_date', :order => 'item_date DESC'
+  has_many :owned_event_pages, :class_name => 'EventPage', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   
   def validate_subdomain
     if Event.count(:conditions => ["subdomain = ? and user_id != ?", subdomain, user_id]) > 0

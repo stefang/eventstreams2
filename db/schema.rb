@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213184716) do
+ActiveRecord::Schema.define(:version => 20111213190141) do
 
   create_table "event_news_items", :force => true do |t|
     t.string   "headline"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(:version => 20111213184716) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+  end
+
+  create_table "event_pages", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "event_id"
+    t.boolean  "published"
+    t.string   "slug"
+    t.integer  "item_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|
