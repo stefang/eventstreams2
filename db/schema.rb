@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208180157) do
+ActiveRecord::Schema.define(:version => 20111209172950) do
+
+  create_table "events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "published"
+    t.string   "tagline"
+    t.text     "description"
+    t.string   "twitter_account"
+    t.string   "twitter_hashtag"
+    t.string   "google_analytics"
+    t.string   "booking_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subdomain"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

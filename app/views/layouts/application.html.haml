@@ -1,13 +1,43 @@
 !!! 5
-%html
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
-    %title Eventstreams2
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
+    %title= yield(:title) || t('title')
+    %meta{:charset=>'utf-8'}
+    %link{:rel=>'shortcut icon', :href => image_path("favicon.ico")}
+    %link{:rel=>'icon', :type=>'image/png', :href => image_path("favicon.png")}
+    %script{:type=>"text/javascript", :src=>"http://html5shim.googlecode.com/svn/trunk/html5.js"}
+    = csrf_meta_tag()
+    = javascript_include_tag "application", :cache => false
+    = stylesheet_link_tag 'application', :media => 'screen, projection', :cache => false
   %body
-    %header
-      %h1 Eventstreams
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    %section#eventstreams
+      %header
+        .inner
+          %h3#site_logo
+            -if signed_in?
+              =link_to "Eventstreams", user_events_path(@user)
+            -else
+              =link_to "Eventstreams", root_path
+          %nav#main
+            %ul
+              -if signed_in?
+                %li=link_to "Your Events", user_events_path(@user)
+                %li=link_to t('authentication.sign_out'), destroy_user_session_path, :method => :delete
+              -else
+                %li=link_to t('authentication.sign_in'), new_user_session_path
+                %li=link_to "Sign up", new_user_registration_url
+      -if signed_in? && @event && @event.valid?
+        %nav#event_header
+          .inner
+            %ul
+              %li.title= @event.title
+              %li.site_link
+                = # link_to event_root_url(:subdomain => @event.subdomain), event_root_url(:subdomain => @event.subdomain)
+                -unless @event.published
+                  %span.published
+                    This event is hidden
+
+      = render :partial => 'layouts/flashes'
+      %section.main
+        .inner
+          = yield
