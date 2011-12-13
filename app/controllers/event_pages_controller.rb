@@ -57,7 +57,7 @@ class EventPagesController < ApplicationController
   def destroy
     @event = current_user.owned_events.find(params[:event_id])
     @event_page = EventPage.find(params[:id])
-    destroy_event_menu_item @event_page
+    #destroy_event_menu_item @event_page
     @event_page.destroy
     flash[:notice] = "Successfully destroyed event page."
     redirect_to user_event_event_pages_path(current_user, @event)
