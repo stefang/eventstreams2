@@ -1,0 +1,32 @@
+= form_for [current_user, @event, @venue] do |f|
+  %ol
+    %li
+      = f.error_messages
+    %li
+      = f.label :name
+      = f.text_field :name
+    %li
+      = f.label :description, "Directions"
+      = f.text_area :description
+    %li
+      = f.label :address
+      = f.text_area :address
+    %li
+      = f.label :postcode
+      = f.text_field :postcode
+    %li
+      = f.label :website
+      = f.text_field :website
+    %li
+      = f.label :phone_number
+      = f.text_field :phone_number
+    %li.published
+      This location is
+      %em{:class => @venue.published ? "visible" : "hidden"}
+        = @venue.published ? "Visible" : "Hidden"
+      %span
+        = f.label :published, "Show"
+        = f.check_box :published
+    %li
+      %button.button.save{:type => 'submit'}
+        Save

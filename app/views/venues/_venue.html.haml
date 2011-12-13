@@ -1,0 +1,15 @@
+%li.location{:data => {:lat => venue.latitude, :lng => venue.longitude, :venue_name => venue.name}}
+  %h5= venue.name
+  - unless venue.venue_type.blank?
+    -if venue.venue_type && !venue.main_venue
+      %span.type
+        = h venue.venue_type.name
+  = venue.description unless venue.description.blank?
+  %p.address
+    = h venue.address
+  %ul.contact
+    %li
+      Telephone:
+      = h venue.phone_number
+    %li= link_to 'Website', venue.website unless venue.website.blank? 
+    %li= link_to 'Get Directions', "http://maps.google.com/maps?f=d&daddr=#{venue.lat},#{venue.lng}"

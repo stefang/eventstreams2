@@ -14,10 +14,12 @@ class Event < ActiveRecord::Base
   has_many :owned_news_items, :class_name => 'EventNewsItem', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_date DESC'
   has_many :owned_event_pages, :class_name => 'EventPage', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   has_many :owned_sponsors, :class_name => 'Sponsor', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
+  has_many :owned_venues, :class_name => 'Venue', :foreign_key => :event_id, :dependent => :destroy
 
   has_many :published_news_items, :class_name => 'EventNewsItem', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_date', :order => 'item_date DESC'
   has_many :published_event_pages, :class_name => 'EventPage', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_order'
   has_many :published_sponsors, :class_name => 'Sponsor', :foreign_key => :event_id, :conditions=>{:published => true, :sponsor_type => 'Sponsor'}, :order => 'item_order'
+  has_many :published_venues, :class_name => 'Venue', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_order'
   
   def validate_subdomain
     if Event.count(:conditions => ["subdomain = ? and user_id != ?", subdomain, user_id]) > 0

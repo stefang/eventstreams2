@@ -1,0 +1,25 @@
+one:
+  name: MyString
+  description: MyText
+  address: MyText
+  postcode: MyString
+  latitude: 1.5
+  longitude: 1.5
+  website: MyString
+  phone_number: MyString
+  published: false
+  event_id: 1
+  slug: MyString
+
+two:
+  name: MyString
+  description: MyText
+  address: MyText
+  postcode: MyString
+  latitude: 1.5
+  longitude: 1.5
+  website: MyString
+  phone_number: MyString
+  published: false
+  event_id: 1
+  slug: MyString

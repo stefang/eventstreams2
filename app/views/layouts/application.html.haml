@@ -46,7 +46,7 @@
                 %li= link_to "Event Details", edit_user_event_path(current_user, @event), :class=>'button'
                 / %li= link_to "Menu Order", user_event_event_menus_path(current_user, @event), :class=>'button'
                 %li= link_to "Pages &amp; Links".html_safe, user_event_event_pages_path(current_user, @event), :class=>'button'
-                / %li= link_to "Locations", user_event_venues_path(current_user, @event), :class=>'button'
+                %li= link_to "Locations", user_event_venues_path(current_user, @event), :class=>'button'
                 / %li= link_to "Speakers", user_event_speakers_path(current_user, @event), :class=>'button'
                 / %li= link_to "Talks", user_event_talks_path(current_user, @event), :class=>'button'
                 / %li= link_to "Tracks", user_event_tracks_path(current_user, @event), :class=>'button'

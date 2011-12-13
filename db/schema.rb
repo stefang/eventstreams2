@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213193757) do
+ActiveRecord::Schema.define(:version => 20111213212434) do
 
   create_table "event_news_items", :force => true do |t|
     t.string   "headline"
@@ -86,5 +86,21 @@ ActiveRecord::Schema.define(:version => 20111213193757) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "address"
+    t.string   "postcode"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "website"
+    t.string   "phone_number"
+    t.boolean  "published"
+    t.integer  "event_id"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
