@@ -19,6 +19,7 @@ Eventstreams2::Application.routes.draw do
       resources :event_news_items
       resources :event_pages
       resources :sponsors    
+      resources :links
       resources :venues, :path => 'location'  
     end
   end

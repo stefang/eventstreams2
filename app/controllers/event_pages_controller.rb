@@ -10,6 +10,7 @@ class EventPagesController < ApplicationController
     else
       @event = current_user.owned_events.find(params[:event_id])
       @event_pages = @event.owned_event_pages.all
+      @links = @event.owned_links.all
     end
   end
 

@@ -11,3 +11,15 @@
         %span
           = "/#{event_page.slug}"
         = link_to 'Delete', user_event_event_page_path(current_user, @event, event_page), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'
+        
+%section.item_list
+  = link_to "New Link", new_user_event_link_path, :class=>'button add'
+  %h3 Links
+  %ul
+    - for link in @links
+      %li[link]{:class=> link.published ? '':'disabled'}
+        = link_to 'Edit', edit_user_event_link_path(current_user, @event, link), :class=>'button manage'
+        = link.title
+        %span
+          = "#{link.url}"
+        = link_to 'Delete', user_event_link_path(current_user, @event, link), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'
