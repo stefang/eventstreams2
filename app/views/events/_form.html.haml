@@ -1,49 +1,42 @@
-= form_for [@user, @event] do |f|
-  = f.error_messages
-  %p
-    = f.label :title
-    %br
-    = f.text_field :title
-  %p
-    = f.label :subdomain
-    %br
-    = f.text_field :subdomain
-  %p
-    = f.label :start_date
-    %br
-    = f.text_field :start_date, :class => "datepicker", :value =>@event.start_date ? @event.start_date.to_s(:form_display) : ''
-  %p
-    = f.label :end_date
-    %br
-    = f.text_field :end_date, :class => "datepicker", :value =>@event.end_date ? @event.end_date.to_s(:form_display) : ''
-  %p
-    = f.label :published, "Show"
-    %br
-    = f.check_box :published
-  %p
-    = f.label :tagline
-    %br
-    = f.text_field :tagline
-  %p
-    = f.label :description
-    %br
-    = f.text_area :description
-  %p
-    = f.label :twitter_account
-    %br
-    = f.text_field :twitter_account
-  %p
-    = f.label :twitter_hashtag
-    %br
-    = f.text_field :twitter_hashtag
-  %p
-    = f.label :google_analytics
-    %br
-    = f.text_field :google_analytics
-  %p
-    = f.label :booking_url
-    %br
-    = f.text_field :booking_url
-  %li
-    %button.button.save{:type => 'submit'}
-      Save
+= form_for [current_user, @event], :html => { :multipart => true } do |f|
+  %ol
+    %li.errors
+      = f.error_messages
+    %li
+      = f.label :title
+      = f.text_field :title
+    %li
+      = f.label :tagline
+      = f.text_field :tagline
+    %li.subdomain
+      = f.label :subdomain
+      = "http:// #{f.text_field :subdomain} .#{request.host}".html_safe
+    %li.date
+      = f.label :start_date
+      = f.text_field :start_date, :class => "datepicker", :value =>@event.start_date ? @event.start_date.to_s(:form_display) : ''
+    %li.date
+      = f.label :end_date
+      = f.text_field :end_date, :class => "datepicker", :value =>@event.end_date ? @event.end_date.to_s(:form_display) : ''
+    %li
+      = f.label :description
+      = f.text_area :description
+  %ol
+    %li
+      = f.label :google_analytics, "Google Analytics UA# <span>eg. UA-1234567-8</span>"
+      = f.text_field :google_analytics
+    %li
+      = f.label :booking_url, "Booking service url <span>eg. an Eventbrite URL</span>"
+      = f.text_field :booking_url
+    %li
+      = f.label :twitter_account, "Twitter account <span>eg. @awesomeevent</span>"
+      = f.text_field :twitter_account
+    %li.published
+      This event is
+      %em{:class => @event.published ? "visible" : "hidden"}
+        = @event.published ? "Visible" : "Hidden"
+      %span
+        = f.check_box :published
+        = f.label :published, "Show"
+    %li
+      %button.button.save{:type => 'submit'}
+        Save
