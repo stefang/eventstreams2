@@ -1,0 +1,25 @@
+one:
+  name: MyString
+  slug: MyString
+  event_id: 1
+  item_order: 1
+  published: false
+  logo_file_name: MyString
+  logo_content_type: MyString
+  logo_file_size: 1
+  logo_updated_at: 2011-12-13 19:37:57
+  url: MyString
+  sponsor_type: MyString
+
+two:
+  name: MyString
+  slug: MyString
+  event_id: 1
+  item_order: 1
+  published: false
+  logo_file_name: MyString
+  logo_content_type: MyString
+  logo_file_size: 1
+  logo_updated_at: 2011-12-13 19:37:57
+  url: MyString
+  sponsor_type: MyString

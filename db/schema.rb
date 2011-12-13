@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213190141) do
+ActiveRecord::Schema.define(:version => 20111213193757) do
 
   create_table "event_news_items", :force => true do |t|
     t.string   "headline"
@@ -50,6 +50,22 @@ ActiveRecord::Schema.define(:version => 20111213190141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subdomain"
+  end
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "event_id"
+    t.string   "url"
+    t.integer  "item_order"
+    t.boolean  "published"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "sponsor_type",      :default => "Sponsor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

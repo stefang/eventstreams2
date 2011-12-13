@@ -1,0 +1,24 @@
+- title "Event Sponsors"
+
+- if on_subdomain?
+  - if @event.published_sponsors.any?
+    %ul.sponsors
+      - @event.published_sponsors.each_with_index do |sponsor, index| 
+        %li.sponsor{:class => (index+1) % 4  == 0 ? "last" : ""}
+          = link_to image_tag(sponsor.logo.url(:thumb)), sponsor.url, :title => sponsor.name, :class => 'logo'
+        
+- else
+
+  %section.item_list
+    = link_to "New Sponsor", new_user_event_sponsor_path, :class=>'button add'
+    %h3 
+      Your Event Sponsors
+    #ajax_status
+    %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'sponsors'}}
+      - for sponsor in @sponsors
+        %li[sponsor]{:class=> sponsor.published ? '':'disabled'}
+          = link_to 'Edit', edit_user_event_sponsor_path(current_user, @event, sponsor), :class=>'button manage'
+          = sponsor.name
+          %span
+            = "#{sponsor.url}"
+          = link_to 'Delete', user_event_sponsor_path(current_user, @event, sponsor), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

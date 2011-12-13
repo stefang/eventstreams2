@@ -6,6 +6,7 @@ gem 'mysql2'
 gem 'haml'
 gem 'devise'
 gem 'friendly_id', "~> 4.0.0.beta14"
+gem "paperclip", "~> 2.4"
 
 group :development do
   gem "nifty-generators"
