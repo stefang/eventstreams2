@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   
   
   def superadmin?
-    false
+    superadmin
   end
   
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213171557) do
+ActiveRecord::Schema.define(:version => 20111213184716) do
 
   create_table "event_news_items", :force => true do |t|
     t.string   "headline"
@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(:version => 20111213171557) do
     t.datetime "updated_at"
     t.string   "slug"
   end
-
-  add_index "event_news_items", ["slug"], :name => "index_event_news_items_on_slug", :unique => true
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20111213171557) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "superadmin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
