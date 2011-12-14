@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213220358) do
+ActiveRecord::Schema.define(:version => 20111214173330) do
+
+  create_table "event_menus", :force => true do |t|
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.integer  "event_id"
+    t.integer  "item_order"
+    t.string   "title"
+    t.string   "url"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "event_news_items", :force => true do |t|
     t.string   "headline"
@@ -61,6 +73,26 @@ ActiveRecord::Schema.define(:version => 20111213220358) do
     t.datetime "updated_at"
   end
 
+  create_table "speakers", :force => true do |t|
+    t.string   "name"
+    t.text     "biog"
+    t.integer  "event_id"
+    t.boolean  "published"
+    t.string   "slug"
+    t.string   "portrait_file_name"
+    t.string   "portrait_content_type"
+    t.integer  "portrait_file_size"
+    t.datetime "portrait_updated_at"
+    t.integer  "item_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "speakers_talks", :id => false, :force => true do |t|
+    t.integer "speaker_id"
+    t.integer "talk_id"
+  end
+
   create_table "sponsors", :force => true do |t|
     t.string   "name"
     t.string   "slug"
@@ -73,6 +105,31 @@ ActiveRecord::Schema.define(:version => 20111213220358) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "sponsor_type",      :default => "Sponsor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "talks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "event_id"
+    t.string   "slug"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "start"
+    t.integer  "duration"
+    t.integer  "track_id"
+    t.integer  "venue_id"
+  end
+
+  create_table "tracks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "event_id"
+    t.string   "slug"
+    t.boolean  "published"
+    t.integer  "item_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

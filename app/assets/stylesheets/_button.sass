@@ -1,0 +1,63 @@
+.button
+  padding: 3px 9px
+  border: 0
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-weight: bold
+  font-size: 12px
+  background: #4b7897
+  color: white
+  cursor: pointer
+  +border-radius(3px)
+  text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px
+  -webkit-transition: background 0.1s linear
+
+.button:hover, .button:focus
+  background: #4e7d9d - #222222
+  text-decoration: none
+
+.button:active
+  background: #4e7d9d
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5)
+  -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5)
+  text-decoration: none
+
+button.button
+  padding: 9px 24px
+
+section#eventstreams
+  .button.delete
+    padding-left: 23px
+    background:
+      image: url("../images/cross.png")
+      position: 8px 50%
+      repeat: no-repeat
+      color: #770000
+    &:hover, &:focus
+      background-color: #550000
+  .button.invite
+    padding-left: 23px
+    background:
+      image: url("../images/plus.png")
+      position: 8px 50%
+      repeat: no-repeat
+      color: #007700
+    &:hover, &:focus
+      background-color: #005500
+  .button.add
+    padding-left: 23px
+    text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px
+    background:
+      image: url("../images/plus.png")
+      position: 8px 50%
+      repeat: no-repeat
+      color: #28af28
+    &:hover, &:focus
+      background-color: #005e41
+  input, textarea
+    color: #333333
+    +border-radius(3px)
+  label
+    color: #555555
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 1)
+    &:hover, &:focus
+      color: #333333

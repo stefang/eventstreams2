@@ -1,0 +1,15 @@
+one:
+  title: MyString
+  description: MyText
+  event_id: 1
+  slug: MyString
+  published: false
+  item_order: 1
+
+two:
+  title: MyString
+  description: MyText
+  event_id: 1
+  slug: MyString
+  published: false
+  item_order: 1

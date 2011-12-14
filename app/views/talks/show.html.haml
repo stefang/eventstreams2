@@ -1,0 +1,27 @@
+- if on_subdomain?
+  - title "#{@talk.title} | #{@event.title}"   
+  %article.talk
+    %h1.talk_title
+      = @talk.title
+      %span
+        = @talk.start.to_s(:time)
+        \-
+        -unless @talk.duration.blank? || @talk.duration < 1
+          = (@talk.start.to_time + @talk.duration.minutes).to_s(:time)
+        =" on the #{@talk.start.to_date.to_s(:dmy_long)}"
+    =@talk.description
+    -if @speakers.any?
+      %section.speakers
+        %h4.fontface_header 
+          =link_to "The Speakers", speakers_path
+        %ul.speakers_inline
+          - @speakers.each_with_index do |speaker, index| 
+            %li.speaker{:class => (index+1) % 5  == 0 ? "last" : ""}
+              = link_to "#{image_tag speaker.portrait.url(:thumb)}<span>#{speaker.name}</span>", speaker
+  - if @videos.any?
+    %section.videos
+    %h3 Videos
+    %ul
+      - for video in @videos
+        %li
+          = link_to video.title, talk_video_path(@talk, video)

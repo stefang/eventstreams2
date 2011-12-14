@@ -1,0 +1,20 @@
+-title @track.title
+
+%h3= @track.title
+= simple_format @track.description
+%table.programme
+  -@old_date = nil
+  -for talk in @track.published_talks
+    -if talk.start.to_date != @old_date
+      %tr
+        %td{:colspan => 4}= h talk.start.to_date.to_s(:short)
+    - @old_date = talk.start.to_date
+    %tr
+      %td.start= h talk.start.to_s(:time)
+      %td.end
+        -unless talk.duration.blank? || talk.duration < 1
+          = (talk.start.to_time + talk.duration.minutes).to_s(:time)
+      %td.description
+        = link_to talk.title, talk
+        = talk.description
+      %td= link_to talk.venue.name, venues_path unless talk.venue.blank?

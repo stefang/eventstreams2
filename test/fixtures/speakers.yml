@@ -1,0 +1,23 @@
+one:
+  name: MyString
+  biog: MyText
+  event_id: 1
+  published: false
+  slug: MyString
+  portrait_file_name: MyString
+  portrait_content_type: MyString
+  portrait_file_size: 1
+  portrait_updated_at: 2011-12-14 16:43:46
+  item_order: 1
+
+two:
+  name: MyString
+  biog: MyText
+  event_id: 1
+  published: false
+  slug: MyString
+  portrait_file_name: MyString
+  portrait_content_type: MyString
+  portrait_file_size: 1
+  portrait_updated_at: 2011-12-14 16:43:46
+  item_order: 1

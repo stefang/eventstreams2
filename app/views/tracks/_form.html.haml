@@ -1,0 +1,20 @@
+= form_for [current_user, @event, @track] do |f|
+  %ol
+    %li
+      = f.error_messages
+    %li
+      = f.label :title
+      = f.text_field :title
+    %li
+      = f.label :description
+      = f.text_field :description
+    %li.published
+      This track is
+      %em{:class => @track.published ? "visible" : "hidden"}
+        = @track.published ? "Visible" : "Hidden"
+      %span
+        = f.label :published, "Show"
+        = f.check_box :published
+    %li
+      %button.button.save{:type => 'submit'}
+        Save

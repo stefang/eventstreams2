@@ -1,45 +1,647 @@
-body
-  font-family: sans-serif
-  line-height: 20px
-  font-size: 14px
-  
-a
-  text-decoration: none
-  
+@charset "utf-8"
+
+@import reset
+@import mixins
+@import button
+@import growl
+@import ballpark
+
+/* Default Site Styles
+
+html
+  height: 100%
+  background: #3c5f77
+  color: #e6eaed
+
 section#eventstreams
-  max-width: 960px
-  margin: 0 auto
+  a
+    color: #4e7d9d
+    &:hover, &:focus
+      color: #4e7d9d - #222222
+  a.button
+    color: white
+  input, textarea
+    color: #333333
+    +border-radius(3px)
+  label
+    color: #555555
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 1)
+    &:hover, &:focus
+      color: #333333
+
+section#eventstreams
+  .inner
+    width: 860px
+    margin: 0 auto
+    position: relative
+    padding: 22px
   header
-    background: #eee
-    overflow: auto
-    padding: 3px 20px
-    border-bottom: 1px solid #ccc
+    height: 88px
     .inner
-      h3
+      height: 100%
+      padding: 0 22px
+    #site_logo
+      position: absolute
+      top: 22px
+      font-family: BallparkWeiner, sans-serif
+      font-weight: normal
+      margin: 0
+      padding: 4px 0
+      a
+        display: block
+        width: 290px
+        text-decoration: none
+        margin: 0
+        color: white
+        font-size: 44px
+        line-height: 44px
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4)
+        -webkit-mask-image: -webkit-gradient(linear, left 24%, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0.3)))
+        -webkit-transition: text-shadow 0.1s linear
+        &:hover, &:focus
+          text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.9)
+    nav#main
+      position: absolute
+      bottom: 26px
+      right: 22px
+      ul
         float: left
-      nav#main
-        float: right
-        ul
-          list-style: none
-          li
+        li
+          float: left
+          margin-left: 11px
+          a
+            display: block
+            font-weight: bold
+            font-size: 12px
+            padding: 6px 11px
+            background: rgba(0, 0, 0, 0.1)
+            color: white
+            text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.6)
+            +border-radius(5px)
+            +box-shadow(0px 1px 1px rgba(0, 0, 0, 0.3))
+            -webkit-transition: background 0.1s linear
+            &:hover, &:focus
+              background: rgba(0, 0, 0, 0.2)
+            &:hover, &:active
+              background: rgba(0, 0, 0, 0.4)
+  nav#event_header
+    background: #243a49
+    background: rgba(0, 0, 0, 0.5)
+    +box-shadow(0px 2px 4px rgba(0, 0, 0, 0.2))
+    height: 66px
+    .inner
+      padding: 16px 22px
+      ul
+        li
+          position: absolute
+          a
             float: left
-            a
-              display: block
-              padding: 4px 4px
-              background: #fff
-              margin-left: 3px
+            display: block
+            padding: 6px 11px
+            background: rgba(255, 255, 255, 0.1)
+            color: #dddddd
+            text-shadow: 1px -1px 1px rgba(0, 0, 0, 0.3)
+            +border-radius(3px)
+            +box-shadow(0px 1px 1px rgba(0, 0, 0, 0.3))
+            &:hover, &:focus
+              background: rgba(0, 0, 0, 0.2)
+              color: white
+            &:hover, &:active
+              background: rgba(0, 0, 0, 0.4)
+          span.published
+            float: left
+            display: block
+            color: #555555
+            position: relative
+            margin-left: 10px
+            font-size: 12px
+            +border-radius(3px)
+            border: 2px solid white
+            background:
+              color: #f1f1f1
+              image: url("../images/flash_info.png")
+              position: 4px 49%
+              repeat: no-repeat
+            padding: 4px 8px 4px 28px
+            +box-shadow(0px 2px 8px rgba(0, 0, 0, 0.7))
+        li.title
+          left: 22px
+          padding: 6px 18px
+          background: rgba(0, 0, 0, 0.4)
+        li.title.league
+          text-transform: uppercase
+          font:
+            family: LeagueGothicRegular, sans-serif
+            weight: normal
+            size: 26px
+        li.site_link
+          right: 22px
+  section#flash
+    div.inner
+      min-width: 768px
+      max-width: 1024px
+      margin: 22px auto 0
+      position: relative
+      padding: 0
+      div
+        clear: both
+        padding: 18px
+        margin: 0
+        background: #eeeeee
+        color: #444444
+        +border-radius(6px)
   section.main
-    clear: left
-    .inner
-      overflow: auto
-      nav#event_content, section.event_content
+    clear: both
+    p.empty_menu
+      color: #555555
+      position: relative
+      margin-bottom: 22px
+      font-size: 12px
+      +border-radius(3px)
+      border: 2px solid white
+      background:
+        color: #f1f1f1
+        image: url("../images/flash_info.png")
+        position: 11px 50%
+        repeat: no-repeat
+      padding: 12px 20px 12px 40px
+      +box-shadow(0px 2px 8px rgba(0, 0, 0, 0.7))
+    section.item_list
+      color: #555555
+      position: relative
+      margin-bottom: 22px
+      +border-radius(3px)
+      border: 2px solid white
+      background: #f1f1f1
+      padding: 20px
+      +box-shadow(0px 2px 8px rgba(0, 0, 0, 0.7))
+      a.button.add
         float: left
-      nav#event_content
-        width: 30%
-        margin-right: 5%
-        background: #eee
-      section.event_content
-        width: 65%
-        background: #f1f1f1   
-        form
-          padding: 20px
+        margin-top: -3px
+        margin-right: 18px
+      h3
+        font-size: 18px
+        color: #666666
+        text-shadow: 1px 1px 1px rgba(255, 255, 255, 1)
+        margin-bottom: 21px
+        margin-right: 88px
+        span
+          float: right
+          font-size: 13px
+      ul
+        background: white
+        border: 4px solid #e7e7e7
+        margin-right: 88px
+        li
+          position: relative
+          padding: 11px 11px 10px
+          border-bottom: 1px solid #e7e7e7
+          span, a.event_link
+            position: absolute
+            right: 22px
+            font-size: 11px
+          abbr.date
+            color: #999999
+            margin-left: 10px
+            font-size: 11px
+          span.asset_thumbnail
+            right: 3px
+            top: 3px
+            img
+              width: 35px
+              height: 35px
+          p.combo
+            margin: 0 0 0 46px
+          span.inline
+            position: static
+          .event_link.disabled
+            font-style: italic
+            color: #aaaaaa
+            &:hover, &:focus
+              color: #666666
+          a.button.manage
+            float: left
+            margin-top: -4px
+            margin-left: -4px
+            margin-right: 11px
+          a.button.delete, a.button.invite
+            position: absolute
+            right: -88px
+            top: 7px
+            opacity: 0.3
+          &:last-child
+            border: 0
+          &:hover
+            a.button.delete, a.button.invite
+              opacity: 1
+            span.live_edit
+              display: block
+          span.live_edit
+            position: static
+            form
+              height: 22px
+              margin-top: 9px
+              border-top: 1px solid #eeeeee
+              padding-top: 9px
+              padding-bottom: 1px
+              text-align: right
+              label, input
+                margin: 0
+                display: inline
+              input
+                padding: 0px
+                width: 26px
+                border: 1px solid #cccccc
+                text-align: center
+                &:focus
+                  border: 1px solid #4e7d9d
+              input.datepicker
+                width: 70px
+              select
+                margin: 0
+                padding: 0
+              button
+                padding: 0
+                width: 19px
+                height: 22px
+                margin: 0
+                font-size: 11px
+                text-indent: -5000em
+        li.disabled
+          color: #bbbbbb
+          font-style: italic
+          a
+            font-style: normal
+        li.tweet
+          min-height: 44px
+          img
+            float: left
+            width: 44px
+            margin-right: 11px
+          span
+            display: block
+            position: static
+            font-size: 13px
+            margin-left: 59px
+            padding: 0
+        li.ui-sortable-helper
+          border: 1px solid #cccccc
+          padding: 11px 10px 10px
+          background: white
+          opacity: 0.9
+          +box-shadow(0 1px 6px rgba(0, 0, 0, 0.4))
+      ul#sortable, ul#sortable_source, ul.sortable_target
+        li
+          cursor: move
+          span
+            padding-right: 22px
+            background:
+              image: url(../images/sortable.png)
+              position: right 50%
+              repeat: no-repeat
+        li.target
+          background: #ffee7f
+          opacity: 0.5
+      ul#sortable.activeTarget, ul#sortable_source.activeTarget, ul.sortable_target.activeTarget
+        border-color: #ffee7f
+    #ajax_status
+      padding: 4px 9px
+      font:
+        size: 11px
+        weight: bold
+      color: #666666
+      background: #ffee7f
+      +border-radius(4px)
+      position: absolute
+      right: 11px
+      top: 11px
+    form
+      ol
+        margin-bottom: 22px
+        +border-radius(3px)
+        border: 2px solid white
+        background: #f1f1f1
+        padding: 20px
+        +box-shadow(0px 2px 8px rgba(0, 0, 0, 0.7))
+        list-style: none
+        li
+          font:
+            size: 12px
+            weight: bold
+          color: #666666
+          margin-bottom: 18px
+          label
+            display: block
+            text-shadow: 0 1px 1px white
+            font:
+              size: 12px
+              weight: bold
+            span
+              margin-left: 18px
+              color: #999999
+              font:
+                weight: normal
+                size: 11px
+          input
+            height: 18px
+            line-height: 18px
+          input, textarea
+            display: inline-block
+            color: #333333
+            +border-radius(3px)
+            font:
+              size: 12px
+              weight: bold
+            padding: 4px 6px
+            background: white url("../images/input_shadow.png") repeat-x
+            border: 1px solid white
+            +box-shadow(0px 0px 2px rgba(0, 0, 0, 0.6))
+            width: 237px
+            &:focus
+              +box-shadow(0px 1px 4px rgba(0, 0, 0, 0.4))
+              border: 1px solid #4b7897
+            width: 425px
+          textarea
+            width: 425px
+            height: 150px
+            margin-bottom: 0
+          p.optional
+            float: right
+            text-shadow: 0 1px 1px white
+            font:
+              line-height: 20px
+              size: 10px
+              style: italic
+            color: #888888
+      li.checkbox, li.select, li.ticklist, li.theme
+        border: 1px solid #cccccc
+        width: 420px
+        padding: 5px 9px
+        +border-radius(4px)
+        margin-bottom: 8px
+        label
+          display: inline
+          width: none
+          margin: 0
+        input
+          width: 18px
+          height: 12px
+          padding: 0
+          margin: 0 5px 0 0
+        ul
+          li
+            margin-bottom: 3px
+      li.image_upload
+        border: 1px solid #cccccc
+        width: 420px
+        padding: 9px
+        +border-radius(4px)
+        margin-bottom: 8px
+        overflow: auto
+        img
+          padding: 3px
+          background: white
+          float: left
+          margin-right: 9px
+          width: 42px
+        label
+          margin-bottom: 6px
+        input
+          width: 200px
+          background: none
+          border: 0
+          padding: 0
+          +remove-box-shadow
+        p.helptext
+          clear: both
+          margin-top: 10px
+          margin-bottom: 0
+          padding: 6px 12px
+          background: white
+          +border-radius(3px)
+          font:
+            size: 11px
+            weight: normal
+      li.published
+        background: white
+        border: 1px solid #cccccc
+        width: 420px
+        padding: 5px 9px
+        +border-radius(4px)
+        margin-bottom: 8px
+        position: relative
+        em.hidden
+          color: red
+        em.visible
+          color: #007651
+        span
+          margin-left: 9px
+          padding-left: 9px
+          border-left: 1px solid #dddddd
+          display: inline
+          label, input
+            display: inline
+            height: 17px
+          input
+            width: 18px
+      li.subdomain
+        input
+          width: 267px
+      li.date
+        border: 1px solid #cccccc
+        width: 425px
+        padding: 5px 9px
+        +border-radius(4px)
+        margin-bottom: 8px
+        label
+          display: inline-block
+          margin: 0 6px 0 0
+        input.datepicker
+          +remove-box-shadow
+          width: 80px
+          padding: 0 4px
+          margin: 0 6px 0 0
+          +border-radius(0)
+          margin-left: 3px
+          &:focus
+            +remove-box-shadow
+        input.time_input
+          padding: 0 4px
+          width: 20px
+          text-align: center
+          margin: 0
+      li.colours
+        border: 1px solid #cccccc
+        width: 425px
+        padding: 5px 9px 9px
+        +border-radius(4px)
+        margin-bottom: 8px
+        position: relative
+        input.colorwell
+          width: 6em
+        #picker
+          position: absolute
+          z-index: 5000
+          top: -20px
+          right: -20px
+          padding: 4px
+          background: #eeeeee
+          border: 2px solid white
+          +box-shadow(0 2px 15px rgba(0, 0, 0, 0.5))
+          +border-radius(3px)
+      li.asset_list
+        border: 1px solid #cccccc
+        width: 420px
+        padding: 9px
+        +border-radius(4px)
+        margin-bottom: 8px
+        position: relative
+        ul
+          li
+            background: white
+            margin-bottom: 1px
+            padding: 3px
+            img
+              width: 20px
+              height: 20px
+              vertical-align: middle
+              margin-right: 6px
+            .code
+              float: right
+              font-family: monospace
+    nav#event_content
+      width: 20%
+      height: 100%
+      min-height: 100%
+      position: absolute
+      top: 22px
+      ul
+        li
+          a
+            font-size: 13px
+            background: #69a7d1
+            display: block
+            padding: 9px 16px
+            margin-bottom: 4px
+            font-weight: normal
+            text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3)
+            &:hover, &:focus
+              background: #4e7d9d
+    section.event_content
+      width: 75%
+      min-height: 100%
+      margin-left: 25%
+    ul.tweets
+      margin-bottom: 22px
+      +border-radius(11px)
+      border: 2px solid #dddddd
+      background: #fafafa
+      padding: 20px
+      width: 450px
+
+/* Sign In Form Overrides
+
+section#eventstreams section.main form ol.account_form
+  width: 350px
+  margin: 0 auto
+  +border-radius(11px)
+  border: 0
+  background: #fafafa
+  background: #fafafa -webkit-gradient(radial, center 33%, 0, center 33%, 250, from(white), to(#cccccc)) fixed
+  background: #fafafa -moz-radial-gradient(center 33%, circle cover, white, #cccccc) fixed no-repeat
+  padding: 40px
+  z-index: 10000
+  +box-shadow(0 4px 72px rgba(0, 0, 0, 0.6))
+  list-style: none
+  .account_link
+    position: absolute
+    top: 3px
+    right: 0
+    color: #2687a3
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 1)
+    &:hover, &:focus
+      color: #165161
+  li
+    position: relative
+    clear: both
+    font:
+      size: 12px
+      weight: bold
+    color: #666666
+    label
+      width: 100px
+      display: inline-block
+      color: #555555
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 1)
+      &:hover, &:focus
+        color: #333333
+      font:
+        size: 12px
+        weight: bold
+    input
+      display: inline-block
+      color: #333333
+      +border-radius(3px)
+      font:
+        size: 12px
+        weight: bold
+      padding: 4px
+      background: white url("../images/input_shadow.png") repeat-x
+      border: 1px solid white
+      +box-shadow(0px 0px 2px rgba(0, 0, 0, 0.6))
+      width: 237px
+      &:focus
+        +box-shadow(0px 1px 4px rgba(0, 0, 0, 0.6))
+  li.checkbox, li.select, li.date, li.ticklist
+    width: 331px
+    background: rgba(0, 0, 0, 0.1)
+    +bevel-shadow
+    input
+      width: 18px
+
+section#eventstreams section.main form ol.feedback_form
+  width: 440px
+  margin: 0 auto
+  +border-radius(11px)
+  border: 0
+  background: #fafafa
+  background: #fafafa -webkit-gradient(radial, center 33%, 0, center 33%, 250, from(white), to(#cccccc)) fixed
+  background: #fafafa -moz-radial-gradient(center 33%, circle cover, white, #cccccc) fixed no-repeat
+  padding: 40px
+  z-index: 10000
+  +box-shadow(0 4px 72px rgba(0, 0, 0, 0.6))
+  list-style: nonerail
+  li
+    position: relative
+    clear: both
+    font:
+      size: 12px
+      weight: bold
+    color: #666666
+    label
+      color: #555555
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 1)
+      margin-bottom: 3px
+      &:hover, &:focus
+        color: #333333
+      font:
+        size: 12px
+        weight: bold
+    input
+      display: inline-block
+      color: #333333
+      +border-radius(3px)
+      font:
+        size: 12px
+        weight: bold
+      padding: 4px
+      background: white url("../images/input_shadow.png") repeat-x
+      border: 1px solid white
+      +box-shadow(0px 0px 2px rgba(0, 0, 0, 0.6))
+      width: 296px
+      &:focus
+        +box-shadow(0px 1px 4px rgba(0, 0, 0, 0.6))
+
+@import datepicker
+@import farbtastic
+@import dialog

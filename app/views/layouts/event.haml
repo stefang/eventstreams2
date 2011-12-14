@@ -5,6 +5,15 @@
         %li=link_to "Event Published", edit_user_event_url(current_user, @event, :host => request.domain)
       -else
         %li=link_to "Event Hidden", edit_user_event_url(current_user, @event, :host => request.domain)
+  -if @event.menu_order_main.any?
+    %nav#main
+      .inner
+        %ul.main
+          - for event_menu in @event.menu_order_main
+            %li{:class => event_menu.url == request.request_uri ? "active" : ""}
+              = link_to event_menu.title, event_menu.url
+        - unless @event.booking_url.blank?
+          = link_to t("#{@event.theme_name}.register")+"<span></span>", @event.booking_url, :class=> 'register'
 
 = yield
 

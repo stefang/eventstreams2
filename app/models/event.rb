@@ -16,12 +16,18 @@ class Event < ActiveRecord::Base
   has_many :owned_sponsors, :class_name => 'Sponsor', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   has_many :owned_venues, :class_name => 'Venue', :foreign_key => :event_id, :dependent => :destroy
   has_many :owned_links, :class_name => 'Link', :foreign_key => :event_id, :dependent => :destroy
+  has_many :owned_tracks, :class_name => 'Track', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
+  has_many :owned_speakers, :class_name => 'Speaker', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
+  has_many :owned_talks, :class_name => 'Talk', :foreign_key => :event_id, :dependent => :destroy, :order => 'start ASC'
+  has_many :menu_order_main, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'main'}, :dependent => :destroy, :order => 'item_order'
+  has_many :menu_order_footer, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'footer'}, :dependent => :destroy, :order => 'item_order'
 
   has_many :published_news_items, :class_name => 'EventNewsItem', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_date', :order => 'item_date DESC'
   has_many :published_event_pages, :class_name => 'EventPage', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_order'
   has_many :published_sponsors, :class_name => 'Sponsor', :foreign_key => :event_id, :conditions=>{:published => true, :sponsor_type => 'Sponsor'}, :order => 'item_order'
   has_many :published_venues, :class_name => 'Venue', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'item_order'
   has_many :published_links, :class_name => 'Link', :foreign_key => :event_id, :conditions=>{:published => true}
+  has_many :published_talks, :class_name => 'Talk', :foreign_key => :event_id, :conditions=>{:published => true}, :order => 'start'
   
   def validate_subdomain
     if Event.count(:conditions => ["subdomain = ? and user_id != ?", subdomain, user_id]) > 0

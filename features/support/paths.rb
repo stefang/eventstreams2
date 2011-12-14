@@ -15,6 +15,8 @@ module NavigationHelpers
       user_events_path(@user)
     when /the (.*) subdomain/
       root_url(:subdomain => $1)
+    when /the (.*) programme page/
+      tracks_url(:subdomain => $1)
     else
       begin
         page_name =~ /the (.*) page/

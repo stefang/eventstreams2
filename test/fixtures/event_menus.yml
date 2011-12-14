@@ -1,0 +1,17 @@
+one:
+  item_type: MyString
+  item_id: 1
+  event_id: 1
+  item_order: 1
+  title: MyString
+  url: MyString
+  location: MyString
+
+two:
+  item_type: MyString
+  item_id: 1
+  event_id: 1
+  item_order: 1
+  title: MyString
+  url: MyString
+  location: MyString
