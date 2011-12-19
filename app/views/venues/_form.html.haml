@@ -1,7 +1,7 @@
 = form_for [current_user, @event, @venue] do |f|
   %ol
-    %li
-      = f.error_messages
+    -unless f.error_messages.blank?
+      %li= f.error_messages
     %li
       = f.label :name
       = f.text_field :name

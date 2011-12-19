@@ -1,7 +1,8 @@
 = form_for [current_user, @event], :html => { :multipart => true } do |f|
   %ol
-    %li.errors
-      = f.error_messages
+    -unless f.error_messages.blank?
+      %li.errors
+        = f.error_messages
     %li
       = f.label :title
       = f.text_field :title
@@ -27,7 +28,7 @@
         = image_tag(@event.event_logo.url(:tiny))
       = f.label :event_logo, "Event Logo (Resized to fit in 210px x 90px)"
       = f.file_field :event_logo
-    
+  %ol
     %li
       = f.label :google_analytics, "Google Analytics UA# <span>eg. UA-1234567-8</span>".html_safe
       = f.text_field :google_analytics
