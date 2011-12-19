@@ -78,6 +78,19 @@ Feature: Create event
     And I fill in "Subdomain" with "@./"
     And I press "Save"
     Then I should see "Subdomain must only contain letters and numbers"
+
+  Scenario: User tries to create an event with a url links without http at the beginning
+    Given I am a new, authenticated user
+    When I follow "Your Events"
+    Then I follow "New Event"
+    When I fill in "Title" with "Exciting Event"
+    And I fill in "Subdomain" with "myevent"
+    And I fill in "event_facebook_url" with "facebook.com?group_id=123"
+    And I fill in "event_booking_url" with "eventbrite.com?event_id=123"
+    And I press "Save"
+    And I follow "Manage"
+    Then the "event_facebook_url" field should contain "http://facebook.com"
+    And the "event_booking_url" field should contain "http://eventbrite.com"
     
   Scenario: User tries to create an event with a subdomain that is reserved
     Given I am a new, authenticated user

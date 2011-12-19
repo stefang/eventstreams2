@@ -44,5 +44,5 @@ class ApplicationController < ActionController::Base
   def destroy_event_menu_item(item)
     @menu_item.destroy if @menu_item = EventMenu.where(:item_type => item.class, :event_id => item.event_id, :item_id => item.id).first
   end
-     
+    
 end

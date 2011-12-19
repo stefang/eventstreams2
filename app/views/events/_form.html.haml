@@ -29,14 +29,17 @@
       = f.file_field :event_logo
     
     %li
-      = f.label :google_analytics, "Google Analytics UA# <span>eg. UA-1234567-8</span>"
+      = f.label :google_analytics, "Google Analytics UA# <span>eg. UA-1234567-8</span>".html_safe
       = f.text_field :google_analytics
     %li
-      = f.label :booking_url, "Booking service url <span>eg. an Eventbrite URL</span>"
+      = f.label :booking_url, "Booking service url <span>eg. an Eventbrite URL</span>".html_safe
       = f.text_field :booking_url
     %li
-      = f.label :twitter_account, "Twitter account <span>eg. @awesomeevent</span>"
+      = f.label :twitter_account, "Twitter account <span>eg. @awesomeevent</span>".html_safe
       = f.text_field :twitter_account
+    %li
+      = f.label :facebook_url, "Facebook page or group URL <span>eg. https://www.facebook.com/groups/113997628639322/</span>".html_safe
+      = f.text_field :facebook_url
     %li.published
       This event is
       %em{:class => @event.published ? "visible" : "hidden"}

@@ -21,5 +21,16 @@ class Sponsor < ActiveRecord::Base
     name.split(/\s+/)[0..9].compact.join(" ")
   end
   
+  def url=(url)
+    write_attribute(:url, validate_url(url))
+  end
+  
+  def validate_url(url)
+    if !url.blank? && !url.match(/^http|https:\/\//i)
+      return "http:\/\/#{url}"
+    else
+      return url
+    end 
+  end 
   
 end

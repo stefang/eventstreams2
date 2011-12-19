@@ -19,7 +19,6 @@ class SponsorsController < ApplicationController
   
   def create
     @event = current_user.owned_events.find(params[:event_id])
-    check_url
     @sponsor = @event.owned_sponsors.new(params[:sponsor])
     if @sponsor.save
       flash[:notice] = "Successfully created sponsor."
@@ -36,7 +35,6 @@ class SponsorsController < ApplicationController
   
   def update
     @event = current_user.owned_events.find(params[:event_id])
-    check_url
     @sponsor = @event.owned_sponsors.find(params[:id])
     if @sponsor.update_attributes(params[:sponsor])
       flash[:notice] = "Successfully updated sponsor."
@@ -66,10 +64,4 @@ class SponsorsController < ApplicationController
     render :text => "Sponsor order saved"
   end
     
-  def check_url
-    if !params[:sponsor][:url].blank? && !params[:sponsor][:url].match(/^http:\/\//i)
-        params[:sponsor][:url] = "http:\/\/#{params[:sponsor][:url]}"
-    end
-  end
-  
 end

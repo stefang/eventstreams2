@@ -61,5 +61,5 @@ class EventsController < ApplicationController
       flash[:warning] = "Not authed"
       redirect_to '/'
   end
-  
+
 end

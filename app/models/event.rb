@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :user_id, :title, :subdomain, :start_date, :end_date, :published, :tagline, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :event_logo
+  attr_accessible :user_id, :title, :subdomain, :start_date, :end_date, :published, :tagline, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :event_logo, :facebook_url
 
   has_attached_file :event_logo, :styles => { :original => "980x980", :medium => "460x300>", :thumb => "210x90>", :tiny => "42x42#" }, 
     :path => ":rails_root/app/assets/event_assets/:id/:attachment/:id/:style/:id.jpg",
@@ -10,7 +10,6 @@ class Event < ActiveRecord::Base
          :thumb => "-quality 92" 
     }  
   
-
   validates_presence_of :title
   validates_presence_of :subdomain
   validate :validate_subdomain  
@@ -44,5 +43,22 @@ class Event < ActiveRecord::Base
       errors.add(:subdomain, "Someone has already bagged this subdomain, sorry!")
     end
   end
+  
+  def booking_url=(booking_url)
+    write_attribute(:booking_url, validate_url(booking_url))
+  end
+  
+  def facebook_url=(facebook_url)
+    write_attribute(:facebook_url, validate_url(facebook_url))
+  end
+  
+  def validate_url(url)
+    if !url.blank? && !url.match(/^http|https:\/\//i)
+      return "http:\/\/#{url}"
+    else
+      return url
+    end 
+  end 
+  
 
 end
