@@ -60,7 +60,20 @@ class VenuesController < ApplicationController
     @event = current_user.owned_events.find(params[:event_id])
     @venue = Venue.find(params[:id])
     @venue.destroy
-    flash[:notice] = "Successfully destroyed venue."
+    flash[:notice] = "Successfully deleted venue."
     redirect_to user_event_venues_path
   end
+  
+  def update_order
+    current_item = 1
+    item_order = params[:item_order].split("&")
+    item_order.each do |e|
+      item = Venue.find(e.split("=")[1])
+      item.item_order = current_item
+      item.save
+      current_item += 1
+    end
+    render :text => "Venue order saved"
+  end
+  
 end

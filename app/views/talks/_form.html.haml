@@ -8,6 +8,7 @@
     %li
       = f.label :description
       = f.text_area :description
+    = render 'layouts/assets_list'
     %li.date
       %label{:for => "start_date"} Start Date
       %input{:class => "datepicker", :name => "start_date", :id => "start_date", :value => @talk.start.blank? ? @event.start_date : @talk.start.to_date.to_s(:form_display)}

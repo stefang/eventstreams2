@@ -65,4 +65,4 @@ Feature: Create event venue
     Then I should see "Successfully created venue."
     And I should see "Nice Hotel"
     And I follow "Delete"
-    Then I should see "Successfully destroyed venue."
+    Then I should see "Successfully deleted venue."

@@ -12,9 +12,11 @@
   %section.item_list
     = link_to "New Location", new_user_event_venue_path, :class=>'button add'
     %h3 Locations
-    %ul
+    %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'venues'}}
       - for venue in @venues
-        %li{:class=> venue.published ? '':'disabled'}
+        %li[venue]{:class=> venue.published ? '':'disabled'}
           = link_to 'Edit', edit_user_event_venue_path(current_user, @event, venue), :class=>'button manage'
           = venue.name
+          %span
+            = "#{venue.slug}"
           = link_to 'Delete', user_event_venue_path(current_user, @event, venue), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

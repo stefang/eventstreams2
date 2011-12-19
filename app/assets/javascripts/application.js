@@ -6,4 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require farbtastic
+//= require farbtastic
+//= require jquery-ui-1.8.16.custom.min
+//= require eventstreams_admin
 //= require_tree .

@@ -2,7 +2,7 @@ class Speaker < ActiveRecord::Base
   extend FriendlyId
   belongs_to :event
   has_and_belongs_to_many :talks
-  friendly_id :name, :use => :scoped, :scope => :event
+  friendly_id :first_ten_words, :use => :scoped, :scope => :event
 
   attr_accessible :name, :biog, :event_id, :published, :slug, :portrait, :item_order
 
@@ -16,4 +16,9 @@ class Speaker < ActiveRecord::Base
 
     validates_presence_of :name, :on => :create
     validates_presence_of :event_id, :on => :create
+    
+    def first_ten_words
+      name.split(/\s+/)[0..9].compact.join(" ")
+    end
+    
 end

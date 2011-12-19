@@ -54,7 +54,7 @@ class EventMenusController < ApplicationController
         if item.item_type == 'Link'
           item.url = record.url
         else
-          item.url = url_for :controller => item.item_type.tableize, :action => 'show', :id => record.cached_slug, :only_path => true
+          item.url = url_for :controller => item.item_type.tableize, :action => 'show', :id => record.slug, :only_path => true
         end
         item.save
         current_item += 1
@@ -62,7 +62,6 @@ class EventMenusController < ApplicationController
         item.title = item_data[1].titlecase
         item.url = case item_data[1]
           when "location" then "/location"
-          when "contact" then "/contact"
           when "speakers" then "/speakers"
           when "programme" then "/programme"
           when "sponsors" then "/sponsors"

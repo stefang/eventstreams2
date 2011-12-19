@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111214173330) do
+ActiveRecord::Schema.define(:version => 20111219165638) do
+
+  create_table "event_assets", :force => true do |t|
+    t.string   "title"
+    t.integer  "event_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
 
   create_table "event_menus", :force => true do |t|
     t.string   "item_type"
@@ -62,6 +74,10 @@ ActiveRecord::Schema.define(:version => 20111214173330) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subdomain"
+    t.string   "event_logo_file_name"
+    t.string   "event_logo_content_type"
+    t.integer  "event_logo_file_size"
+    t.datetime "event_logo_updated_at"
   end
 
   create_table "links", :force => true do |t|
@@ -167,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20111214173330) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "item_order"
   end
 
 end

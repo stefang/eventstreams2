@@ -12,4 +12,16 @@ module ApplicationHelper
     request.subdomain.present? && request.subdomain != 'www'
   end
   
+  def asset_display(text)
+    return text.gsub(/\[asset:([0-9]+)\]/) {|s| find_asset_url($1)} unless text.blank?
+  end
+  
+  def find_asset_url(asset_id)
+    for asset in @event.owned_event_assets
+      if asset.id == asset_id.to_i
+        return image_tag(asset.asset.url)
+      end 
+    end
+  end
+  
 end

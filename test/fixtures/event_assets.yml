@@ -1,0 +1,15 @@
+one:
+  title: MyString
+  event_id: 1
+  asset_file_name: MyString
+  asset_content_type: MyString
+  asset_file_size: 1
+  asset_updated_at: 2011-12-15 13:23:07
+
+two:
+  title: MyString
+  event_id: 1
+  asset_file_name: MyString
+  asset_content_type: MyString
+  asset_file_size: 1
+  asset_updated_at: 2011-12-15 13:23:07

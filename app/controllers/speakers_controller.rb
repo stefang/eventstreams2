@@ -22,7 +22,7 @@ class SpeakersController < ApplicationController
       if @event.blank?
         render_404
       else
-        @speaker = @event.owned_speakers.find(params[:id], :conditions => "published = true", :scope => @event)
+        @speaker = @event.owned_speakers.find(params[:id], :conditions => "published = true")
         render :layout => 'event'
       end
     else
@@ -50,12 +50,12 @@ class SpeakersController < ApplicationController
   
   def edit
     @event = current_user.owned_events.find(params[:event_id])
-    @speaker = @event.owned_speakers.find(params[:id], :scope => @event)
+    @speaker = @event.owned_speakers.find(params[:id])
   end
   
   def update
     @event = current_user.owned_events.find(params[:event_id])
-    @speaker = @event.owned_speakers.find(params[:id], :scope => @event)
+    @speaker = @event.owned_speakers.find(params[:id])
     if @speaker.update_attributes(params[:speaker])
       flash[:notice] = "Successfully updated speaker."
       redirect_to user_event_speakers_url(current_user, params[:event_id])
@@ -66,9 +66,22 @@ class SpeakersController < ApplicationController
   
   def destroy
     @event = current_user.owned_events.find(params[:event_id])
-    @speaker = Speaker.find(params[:id], :scope => @event)
+    @speaker = Speaker.find(params[:id])
     @speaker.destroy
-    flash[:notice] = "Successfully destroyed speaker."
+    flash[:notice] = "Successfully deleted speaker."
     redirect_to user_event_speakers_url(current_user, params[:event_id])
   end
+  
+  def update_order
+    current_item = 1
+    item_order = params[:item_order].split("&")
+    item_order.each do |e|
+      item = Speaker.find(e.split("=")[1])
+      item.item_order = current_item
+      item.save
+      current_item += 1
+    end
+    render :text => "Speaker order saved"
+  end
+  
 end

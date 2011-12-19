@@ -25,5 +25,24 @@ class ApplicationController < ActionController::Base
       @event = Event.find_by_subdomain(request.subdomain, :conditions => "published = true", :order => 'start_date DESC', :limit => 1)
     end
   end
+  
+  def create_event_menu_item(item)
+  end
+  
+  def update_event_menu_item(item)
+    if @menu_item = EventMenu.where(:item_type => item.class, :event_id => item.event_id, :item_id => item.id).first    
+      @menu_item.title = item.title
+      if @menu_item.item_type == 'Link'
+        @menu_item.url = item.url
+      else
+        @menu_item.url = url_for :controller => @menu_item.item_type.tableize, :action => 'show', :id => item.slug, :only_path => true
+      end
+      @menu_item.save
+    end
+  end
+  
+  def destroy_event_menu_item(item)
+    @menu_item.destroy if @menu_item = EventMenu.where(:item_type => item.class, :event_id => item.event_id, :item_id => item.id).first
+  end
      
 end

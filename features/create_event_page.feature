@@ -59,5 +59,6 @@ Feature: Create event page
     Then I should see "Successfully created event page."
     And I should see "Welcome"
     And I follow "Delete"
-    Then I should see "Successfully destroyed event page."
+    Then I should see "Successfully deleted event page."
+    And I should not see "Welcome"
     

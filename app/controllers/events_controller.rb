@@ -52,7 +52,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to user_events_path(@user), :notice => "Successfully destroyed event."
+    redirect_to user_events_path(@user), :notice => "Successfully deleted event."
   end
   
   def get_owned_event

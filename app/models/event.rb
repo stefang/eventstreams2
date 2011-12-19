@@ -1,6 +1,15 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :user_id, :title, :subdomain, :start_date, :end_date, :published, :tagline, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url
+  attr_accessible :user_id, :title, :subdomain, :start_date, :end_date, :published, :tagline, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :event_logo
+
+  has_attached_file :event_logo, :styles => { :original => "980x980", :medium => "460x300>", :thumb => "210x90>", :tiny => "42x42#" }, 
+    :path => ":rails_root/app/assets/event_assets/:id/:attachment/:id/:style/:id.jpg",
+    :url => ":id/:attachment/:id/:style/:id.jpg",
+    :convert_options => {
+         :all => "-strip -colorspace RGB", 
+         :thumb => "-quality 92" 
+    }  
+  
 
   validates_presence_of :title
   validates_presence_of :subdomain
@@ -14,11 +23,12 @@ class Event < ActiveRecord::Base
   has_many :owned_news_items, :class_name => 'EventNewsItem', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_date DESC'
   has_many :owned_event_pages, :class_name => 'EventPage', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   has_many :owned_sponsors, :class_name => 'Sponsor', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
-  has_many :owned_venues, :class_name => 'Venue', :foreign_key => :event_id, :dependent => :destroy
+  has_many :owned_venues, :class_name => 'Venue', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   has_many :owned_links, :class_name => 'Link', :foreign_key => :event_id, :dependent => :destroy
   has_many :owned_tracks, :class_name => 'Track', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   has_many :owned_speakers, :class_name => 'Speaker', :foreign_key => :event_id, :dependent => :destroy, :order => 'item_order'
   has_many :owned_talks, :class_name => 'Talk', :foreign_key => :event_id, :dependent => :destroy, :order => 'start ASC'
+  has_many :owned_event_assets, :class_name => 'EventAsset', :foreign_key => :event_id, :dependent => :destroy
   has_many :menu_order_main, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'main'}, :dependent => :destroy, :order => 'item_order'
   has_many :menu_order_footer, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'footer'}, :dependent => :destroy, :order => 'item_order'
 

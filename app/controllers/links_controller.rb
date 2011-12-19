@@ -12,6 +12,7 @@ class LinksController < ApplicationController
     check_url
     @link = @event.owned_links.new(params[:link])
     if @link.save
+      create_event_menu_item @link
       flash[:notice] = "Successfully created link."
       redirect_to user_event_event_pages_path(current_user, @event)
     else
@@ -29,6 +30,7 @@ class LinksController < ApplicationController
     check_url
     @link = @event.owned_links.find(params[:id])
     if @link.update_attributes(params[:link])
+      update_event_menu_item @link
       flash[:notice] = "Successfully updated link."
       redirect_to user_event_event_pages_path(current_user, @event)
     else
@@ -39,7 +41,7 @@ class LinksController < ApplicationController
   def destroy
     @event = current_user.owned_events.find(params[:event_id])
     @link = @event.owned_links.find(params[:id])
-    #destroy_event_menu_item @link
+    destroy_event_menu_item @link
     @link.destroy
     flash[:notice] = "Successfully deleted link."
     redirect_to user_event_event_pages_path(current_user, @event)

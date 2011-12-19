@@ -64,7 +64,20 @@ class TracksController < ApplicationController
     @event = current_user.owned_events.find(params[:event_id])
     @track = Track.find(params[:id])
     @track.destroy
-    flash[:notice] = "Successfully destroyed track."
+    flash[:notice] = "Successfully deleted track."
     redirect_to user_event_tracks_path(current_user, @event)
   end
+  
+  def update_order
+    current_item = 1
+    item_order = params[:item_order].split("&")
+    item_order.each do |e|
+      item = Track.find(e.split("=")[1])
+      item.item_order = current_item
+      item.save
+      current_item += 1
+    end
+    render :text => "Track order saved"
+  end
+  
 end

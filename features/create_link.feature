@@ -62,3 +62,4 @@ Feature: Create link
     And I should see "Blog"
     And I follow "Delete"
     Then I should see "Successfully deleted link."
+    And I should not see "Blog"

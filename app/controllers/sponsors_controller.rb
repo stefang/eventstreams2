@@ -50,10 +50,22 @@ class SponsorsController < ApplicationController
     @event = current_user.owned_events.find(params[:event_id])
     @sponsor = @event.owned_sponsors.find(params[:id])
     @sponsor.destroy
-    flash[:notice] = "Successfully destroyed sponsor."
+    flash[:notice] = "Successfully deleted sponsor."
     redirect_to user_event_sponsors_path(current_user, @event)
   end
   
+  def update_order
+    current_item = 1
+    item_order = params[:item_order].split("&")
+    item_order.each do |e|
+      item = Sponsor.find(e.split("=")[1])
+      item.item_order = current_item
+      item.save
+      current_item += 1
+    end
+    render :text => "Sponsor order saved"
+  end
+    
   def check_url
     if !params[:sponsor][:url].blank? && !params[:sponsor][:url].match(/^http:\/\//i)
         params[:sponsor][:url] = "http:\/\/#{params[:sponsor][:url]}"

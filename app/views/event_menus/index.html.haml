@@ -36,7 +36,7 @@
           %li[e]
             = e.title
             %span
-              = "/#{e.cached_slug}"
+              = "/#{e.slug}"
     - unless @event.published_links.blank?
       - @event.published_links.each do |e|
         -unless @active_items.include? "links_#{e.id}"
@@ -46,16 +46,14 @@
               = "#{e.url}"
     
     - if !@active_items.include?("static_items_home")
-      %li.static_item#static_item_home='Home <span>/</span>'
+      %li.static_item#static_item_home='Home <span>/</span>'.html_safe
     - if !@event.owned_news_items.blank? && !@active_items.include?("static_items_news")
-      %li.static_item#static_item_news='News <span>/news</span>'
+      %li.static_item#static_item_news='News <span>/news</span>'.html_safe
     - if !@event.owned_speakers.blank? && !@active_items.include?("static_items_speakers")
-      %li.static_item#static_item_speakers='Speakers <span>/speakers</span>'
+      %li.static_item#static_item_speakers='Speakers <span>/speakers</span>'.html_safe
     - if !@event.published_talks.blank? && !@active_items.include?("static_items_programme")
-      %li.static_item#static_item_programme='Programme <span>/programme</span>'
+      %li.static_item#static_item_programme='Programme <span>/programme</span>'.html_safe
     - if !@event.owned_venues.blank? && !@active_items.include?("static_items_location")
-      %li.static_item#static_item_location='Location <span>/location</span>'
-    - if !@event.contact_form_email.blank? && !@active_items.include?("static_items_contact")
-      %li.static_item#static_item_contact='Contact <span>/contact</span>'
+      %li.static_item#static_item_location='Location <span>/location</span>'.html_safe
     - if !@event.owned_sponsors.blank? && !@active_items.include?("static_items_sponsors")
-      %li.static_item#static_item_sponsors='Sponsors <span>/sponsors</span>'
+      %li.static_item#static_item_sponsors='Sponsors <span>/sponsors</span>'.html_safe

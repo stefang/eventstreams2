@@ -23,7 +23,7 @@ class TalksController < ApplicationController
         render_404
       else
         @event_pages = @event.owned_event_pages.find(:all, :conditions => "published = true")
-        @talk = @event.owned_talks.find(params[:id], :scope => @event)
+        @talk = @event.owned_talks.find(params[:id])
         @speakers = @talk.speakers.find(:all, :conditions => "published = true")
         @videos = @talk.owned_videos.find(:all, :conditions => "published = true")
         render :layout => 'event'
@@ -64,14 +64,13 @@ class TalksController < ApplicationController
     @venues = @event.owned_venues.all
     @tracks = @event.owned_tracks.all
     @speakers = @event.owned_speakers.all
-    @talk = @event.owned_talks.find(params[:id], :scope => @event)
-    @videos = @talk.owned_videos.all
+    @talk = @event.owned_talks.find(params[:id])
   end
   
   def update
     @event = current_user.owned_events.find(params[:event_id])
     @speakers = @event.owned_speakers.all
-    @talk = @event.owned_talks.find(params[:id], :scope => @event)
+    @talk = @event.owned_talks.find(params[:id])
     params[:talk][:start] = "#{params[:start_date]} #{params[:start_hour]}:#{params[:start_min]}"
     if @talk.update_attributes(params[:talk])
       flash[:notice] = "Successfully updated talk."
@@ -83,9 +82,9 @@ class TalksController < ApplicationController
   
   def destroy
     @event = current_user.owned_events.find(params[:event_id])
-    @talk = @event.owned_talks.find(params[:id], :scope => @event)
+    @talk = @event.owned_talks.find(params[:id])
     @talk.destroy
-    flash[:notice] = "Successfully destroyed talk."
+    flash[:notice] = "Successfully deleted talk."
     redirect_to user_event_talks_path(current_user, @event)
   end
 end
