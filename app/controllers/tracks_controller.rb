@@ -70,6 +70,7 @@ class TracksController < ApplicationController
   
   def update_order
     current_item = 1
+    puts params
     item_order = params[:item_order].split("&")
     item_order.each do |e|
       item = Track.find(e.split("=")[1])

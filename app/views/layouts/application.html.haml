@@ -5,7 +5,7 @@
     %meta{:charset=>'utf-8'}
     %link{:rel=>'shortcut icon', :href => image_path("favicon.ico")}
     %link{:rel=>'icon', :type=>'image/png', :href => image_path("favicon.png")}
-    %script{:type=>"text/javascript", :src=>"http://html5shim.googlecode.com/svn/trunk/html5.js"}
+    / %script{:type=>"text/javascript", :src=>"http://html5shim.googlecode.com/svn/trunk/html5.js"}
     = csrf_meta_tag()
     = javascript_include_tag "application", :cache => false
     = stylesheet_link_tag 'admin', :media => 'screen, projection', :cache => false
@@ -55,10 +55,10 @@
                 %li= link_to "Image Assets", user_event_event_assets_path(current_user, @event), :class=>'button'
                 / %li= link_to "Manage Tweets", user_event_tweets_path(current_user, @event), :class=>'button'
             %section.event_content
-              / -unless @event.menu_order_main.any?
-              /   %p.empty_menu
-              /     Your event's main menu is empty,
-              /     = link_to "add links to content when available", user_event_event_menus_path(current_user, @event)
+              -unless @event.menu_order_main.any?
+                %p.empty_menu
+                  Your event's main menu is empty,
+                  = link_to "add links to content when available", user_event_event_menus_path(current_user, @event)
               = yield
           -else
             = yield

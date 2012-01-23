@@ -27,52 +27,45 @@ class EventMenusController < ApplicationController
     end
   end
   
-  def update_order
+  def create
     @event = current_user.owned_events.find(params[:event_id])
-    current_item = 1
-    location = params[:menu_location]
-    if location == 'main'
-      @event.menu_order_main.destroy_all
+    @item = @event.menu_items.new(params)
+    if @item.save
+      render :text => @item.id
     else
-      @event.menu_order_footer.destroy_all
+      render :text => "false"
     end
+  end
+
+  def update   
+    @event = current_user.owned_events.find(params[:event_id])
+    @menu_item = @event.menu_items.find(params[:id])
+    @menu_item.custom_title = params[:custom_title]
+    if @menu_item.save
+      render :text => "Title updated"
+    else
+      render :text => "Title save failed"
+    end
+  end
+  
+  def destroy
+    @event = current_user.owned_events.find(params[:event_id])
+    @menu_item = @event.menu_items.find(params[:id])
+    if @menu_item.destroy
+      render :text => "Menu item deleted"
+    else
+      render :text => "false"
+    end
+  end
+    
+  def update_order
+    current_item = 1
     item_order = params[:item_order].split("&")
     item_order.each do |e|
-      item_data = e.split("[]=")
-      if location == 'main'
-        item = @event.menu_order_main.new()
-      else
-        item = @event.menu_order_footer.new()
-      end
-      item.location = location
+      item = EventMenu.find(e.split("=")[1])
       item.item_order = current_item
-      if item_data[0] != 'static_item'
-        record = item_data[0].camelize.constantize.find(item_data[1])
-        item.title = record.title
-        item.item_type = record.class.to_s
-        item.item_id = record.id
-        if item.item_type == 'Link'
-          item.url = record.url
-        else
-          item.url = url_for :controller => item.item_type.tableize, :action => 'show', :id => record.slug, :only_path => true
-        end
-        item.save
-        current_item += 1
-      else
-        item.title = item_data[1].titlecase
-        item.url = case item_data[1]
-          when "location" then "/location"
-          when "speakers" then "/speakers"
-          when "programme" then "/programme"
-          when "sponsors" then "/sponsors"
-          when "news" then "/news"
-          when "home" then "/"
-        end
-        item.item_type = item_data[0].camelize
-        item.item_id = 0
-        item.save
-        current_item += 1
-      end
+      item.save
+      current_item += 1
     end
     render :text => "Menu order saved"
   end

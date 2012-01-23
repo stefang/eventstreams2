@@ -196,7 +196,7 @@ section#eventstreams
           position: relative
           padding: 11px 11px 10px
           border-bottom: 1px solid #e7e7e7
-          span, a.event_link
+          span.url, a.event_link
             position: absolute
             right: 22px
             font-size: 11px
@@ -293,12 +293,29 @@ section#eventstreams
       ul#sortable, ul#sortable_source, ul.sortable_target
         li
           cursor: move
-          span
+          span.url
             padding-right: 22px
             background:
               image: image-url("sortable.png")
               position: right 50%
               repeat: no-repeat
+          a.edit_title
+            display: none
+          &:hover, &:focus
+            a.edit_title
+              display: block
+              font-size: 10px
+              font-weight: bold
+              text-transform: uppercase
+              text-align: center
+              width: 40px
+              height: 20px
+              background: white
+              position: absolute
+              top: 10px
+              left: -40px
+              border: 1px solid #ddd
+              border-radius: 3px
         li.target
           background: #ffee7f
           opacity: 0.5

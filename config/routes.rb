@@ -36,7 +36,11 @@ Eventstreams2::Application.routes.draw do
     end
   end
   
+  post 'users/:user_id/events/:event_id/event_menus', :to => 'event_menus#create'
+  post 'users/:user_id/events/:event_id/event_menus/:id/update', :to => 'event_menus#update'
+  post 'users/:user_id/events/:event_id/event_menus/:id/destroy', :to => 'event_menus#destroy'
   post 'users/:user_id/events/:event_id/event_menus/update_order', :to => 'event_menus#update_order'
+  
   post 'users/:user_id/events/:event_id/speakers/update_order', :to => 'speakers#update_order'
   post 'users/:user_id/events/:event_id/tracks/update_order', :to => 'tracks#update_order'
   post 'users/:user_id/events/:event_id/sponsors/update_order', :to => 'sponsors#update_order'
