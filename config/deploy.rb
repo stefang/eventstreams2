@@ -3,6 +3,8 @@ set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 require "bundler/capistrano"
 
+load 'deploy/assets'
+
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
