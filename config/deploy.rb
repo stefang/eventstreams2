@@ -1,6 +1,7 @@
 set :stages, %w(edge staging production)
 set :default_stage, "staging"
 require 'capistrano/ext/multistage'
+require "bundler/capistrano"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
