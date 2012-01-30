@@ -58,6 +58,6 @@ Eventstreams2::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  SUBDOMAIN_LEVEL = 1
+  SUBDOMAIN_LEVEL = 2
   
 end
