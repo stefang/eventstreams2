@@ -6,6 +6,30 @@ development:
   pool: 5
   host: 127.0.0.1
 
+edge:
+  adapter: mysql2
+  database: eventstreams_edge
+  username: root
+  password: mrsafe
+  pool: 5
+  host: 127.0.0.1
+
+staging:
+  adapter: mysql2
+  database: eventstreams_staging
+  username: root
+  password: mrsafe
+  pool: 5
+  host: 127.0.0.1
+
+production:
+  adapter: mysql2
+  database: eventstreams_production
+  username: root
+  password: mrsafe
+  pool: 5
+  host: 127.0.0.1
+
 test: &test
   adapter: mysql2
   database: eventstreams2_test
