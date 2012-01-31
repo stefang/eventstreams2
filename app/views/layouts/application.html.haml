@@ -25,7 +25,7 @@
                 %li=link_to t('authentication.sign_out'), destroy_user_session_path, :method => :delete
               -else
                 %li=link_to t('authentication.sign_in'), new_user_session_path
-                %li=link_to "Sign up", new_user_registration_url
+                /%li=link_to "Sign up", new_user_registration_url
       -if admin_menu_enabled?
         %nav#event_header
           .inner
