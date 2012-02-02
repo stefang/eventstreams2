@@ -5,9 +5,9 @@
       %nav#event_admin_bar
         %ul
           -if @event.published?
-            %li=link_to "Event Published", edit_user_event_url(current_user, @event, :host => request.domain)
+            %li=link_to "Event Published", edit_user_event_url(current_user, @event, :host => without_secondary_subdomain)
           -else
-            %li=link_to "Event Hidden", edit_user_event_url(current_user, @event, :host => request.domain)
+            %li=link_to "Event Hidden", edit_user_event_url(current_user, @event, :host => without_secondary_subdomain)
       -if @event.menu_order_main.any?
         %nav#main
           .inner
@@ -17,8 +17,6 @@
                   = link_to event_menu.title, event_menu.url
             - unless @event.booking_url.blank?
               = link_to "Register", @event.booking_url, :class=> 'register'
-
     = yield
-
     %footer
       Powered by Eventstreams
