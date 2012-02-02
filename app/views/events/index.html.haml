@@ -11,6 +11,6 @@
         - unless event.start_date.blank?
           %abbr.date
             = event.start_date.to_date.to_s(:dmy_long)
-        = link_to root_url(:host => with_subdomain(event.subdomain)), root_url(:host => with_subdomain(event.subdomain)), :class => event.published ? 'event_link active' : 'event_link disabled'
+        = link_to root_url(:subdomain => event.subdomain), root_url(:subdomain => event.subdomain), :class => event.published ? 'event_link active' : 'event_link disabled'
 
         = link_to 'Delete', user_event_path(@user, event), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'
