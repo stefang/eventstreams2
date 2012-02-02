@@ -9,7 +9,7 @@
     = csrf_meta_tag()
     = javascript_include_tag "application", :cache => false
     = stylesheet_link_tag 'admin', :media => 'screen, projection', :cache => false
-  %body
+  %body{:class => Rails.env}
     %section#eventstreams
       %header
         .inner
