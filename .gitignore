@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore event assets
-/app/assets/event_assets/*
+/public/system/*

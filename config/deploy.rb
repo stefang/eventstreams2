@@ -3,7 +3,7 @@ set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 require "bundler/capistrano"
 
-load 'deploy/assets'
+# load 'deploy/assets'
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -26,7 +26,10 @@ set :scm_username, "stefang"
 set :use_sudo, false
 set :scm_verbose, true
 
-# If you are using Passenger mod_rails uncomment this:
+task :assets do
+  run "cd #{release_path}; RAILS_ENV=#{stage} bundle exec rake assets:precompile"
+end
+
 namespace :deploy do
   task :start do ; end
   task :stop do ; end

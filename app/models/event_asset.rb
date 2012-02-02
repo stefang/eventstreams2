@@ -6,7 +6,7 @@ class EventAsset < ActiveRecord::Base
   attr_accessible :title, :event_id, :asset
   
   has_attached_file :asset, :styles => { :original => "980x980", :medium => "460x300>", :thumb => "210x90>", :tiny => "42x42#" }, 
-    :path => ":rails_root/app/assets/event_assets/:event_id/:attachment/:id/:style/:basename.:extension",
+    :path => "system/event_assets/:event_id/:attachment/:id/:style/:basename.:extension",
     :url => ":event_id/:attachment/:id/:style/:basename.:extension",
     :convert_options => {
          :all => "-strip -colorspace RGB", 
