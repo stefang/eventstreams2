@@ -16,7 +16,7 @@
                 %li{:class => event_menu.url == request.url ? "active" : ""}
                   = link_to event_menu.title, event_menu.url
             - unless @event.booking_url.blank?
-              = link_to t("#{@event.theme_name}.register")+"<span></span>", @event.booking_url, :class=> 'register'
+              = link_to "Register", @event.booking_url, :class=> 'register'
 
     = yield
 
