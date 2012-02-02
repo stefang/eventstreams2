@@ -3,8 +3,8 @@ class Event < ActiveRecord::Base
   attr_accessible :user_id, :title, :subdomain, :start_date, :end_date, :published, :tagline, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :event_logo, :facebook_url
 
   has_attached_file :event_logo, :styles => { :original => "980x980", :medium => "460x300>", :thumb => "210x90>", :tiny => "42x42#" }, 
-    :path => "system/event_assets/:id/:attachment/:id/:style/:id.jpg",
-    :url => ":id/:attachment/:id/:style/:id.jpg",
+    :path => ":rails_root/public/system/event_assets/:id/:attachment/:id/:style/:id.jpg",
+    :url => "/system/event_assets/:id/:attachment/:id/:style/:id.jpg",
     :convert_options => {
          :all => "-strip -colorspace RGB", 
          :thumb => "-quality 92" 

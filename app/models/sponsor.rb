@@ -6,8 +6,8 @@ class Sponsor < ActiveRecord::Base
   attr_accessible :name, :slug, :event_id, :item_order, :published, :url, :sponsor_type, :logo
 
   has_attached_file :logo, :styles => { :original => "980x980", :medium => "460x300>", :thumb => "210x90>", :tiny => "42x42#" }, 
-    :path => "system/event_assets/:event_id/:attachment/:id/:style/:id.jpg",
-    :url => ":event_id/:attachment/:id/:style/:id.jpg",
+    :path => ":rails_root/public/system/event_assets/:event_id/:attachment/:id/:style/:id.jpg",
+    :url => "/system/event_assets/:event_id/:attachment/:id/:style/:id.jpg",
     :convert_options => {
          :all => "-strip -colorspace RGB", 
          :thumb => "-quality 92" 
