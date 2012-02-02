@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def on_subdomain?
-    request.subdomain.present? && request.subdomain != 'www'
+    request.subdomain(SUBDOMAIN_LEVEL).present? && request.subdomain(SUBDOMAIN_LEVEL) != 'www'
   end
   
   def asset_display(text)

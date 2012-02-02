@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
   
   def on_subdomain?
-    request.subdomain.present? && request.subdomain != 'www'
+    request.subdomain(SUBDOMAIN_LEVEL).present? && request.subdomain(SUBDOMAIN_LEVEL) != 'www'
   end
   
   def enable_admin_side_menu
@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   
   def get_published_or_owned_event
     if signed_in? && current_user.superadmin?
-      @event = Event.find_by_subdomain(request.subdomain, :order => 'start_date DESC', :limit => 1)
+      @event = Event.find_by_subdomain(request.subdomain(SUBDOMAIN_LEVEL), :order => 'start_date DESC', :limit => 1)
     elsif signed_in?
-      @event = Event.find_by_subdomain(request.subdomain, :conditions => "published = true OR user_id = #{current_user.id}", :order => 'start_date DESC', :limit => 1)
+      @event = Event.find_by_subdomain(request.subdomain(SUBDOMAIN_LEVEL), :conditions => "published = true OR user_id = #{current_user.id}", :order => 'start_date DESC', :limit => 1)
     else
-      @event = Event.find_by_subdomain(request.subdomain, :conditions => "published = true", :order => 'start_date DESC', :limit => 1)
+      @event = Event.find_by_subdomain(request.subdomain(SUBDOMAIN_LEVEL), :conditions => "published = true", :order => 'start_date DESC', :limit => 1)
     end
   end
   
