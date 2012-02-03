@@ -19,7 +19,7 @@
             %ul.main
               - for event_menu in @event.menu_order_main
                 %li{:class => event_menu.url == request.url ? "active" : ""}
-                  = link_to event_menu.title, event_menu.url
+                  = link_to event_menu.display_title, event_menu.url
             - unless @event.booking_url.blank?
               = link_to "Register", @event.booking_url, :class=> 'register'
     = yield
