@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :subdomain
   validate :validate_subdomain  
-  validates_exclusion_of :subdomain, :in => %w(www about contact faq blog tour features packages tos privacy help support pricing careers assets staging edge),
+  validates_exclusion_of :subdomain, :in => %w(www admin about contact faq blog tour features packages tos privacy help support pricing careers assets images system staging edge),
       :message => "'%{value}' is reserved."
   validates_format_of :subdomain, :with => /^\w+$/i, :message => "must only contain letters and numbers"
   validates_format_of :twitter_hashtag, :with => /^#/i, :message => "requires a # at the start", :allow_blank => true
