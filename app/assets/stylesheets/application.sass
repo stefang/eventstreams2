@@ -294,6 +294,7 @@ section#eventstreams
           opacity: 0.9
           +box-shadow(0 1px 6px rgba(0, 0, 0, 0.4))
       ul#sortable, ul#sortable_source, ul.sortable_target
+        position: relative
         li
           cursor: move
           span.url
@@ -320,8 +321,12 @@ section#eventstreams
               border: 1px solid #ddd
               border-radius: 3px
         li.target
+          position: absolute
+          top: -42px
+          left: -4px
           background: #ffee7f
-          opacity: 0.5
+        li.saving
+          color: #f00
       ul#sortable.activeTarget, ul#sortable_source.activeTarget, ul.sortable_target.activeTarget
         border-color: #ffee7f
     #ajax_status

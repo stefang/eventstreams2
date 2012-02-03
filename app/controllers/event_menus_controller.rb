@@ -8,17 +8,19 @@ class EventMenusController < ApplicationController
     @active_items = []
     unless @event_menus_main.blank?
       @event_menus_main.each do |i|
-        if i.item_type == 'StaticItem'
+        puts i.item_type
+        if i.item_type == 'static_item'
           @active_items << "#{i.item_type.tableize}_#{i.title.downcase}"
         else
           @active_items << "#{i.item_type.tableize}_#{i.item_id}"
         end
       end  
+      puts @active_items
     end
     
     unless @event_menus_footer.blank?
       @event_menus_footer.each do |i|
-        if i.item_type == 'StaticItem'
+        if i.item_type == 'static_item'
           @active_items << "#{i.item_type.tableize}_#{i.title.downcase}"
         else
           @active_items << "#{i.item_type.tableize}_#{i.item_id}"

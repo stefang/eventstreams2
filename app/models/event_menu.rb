@@ -8,7 +8,7 @@ class EventMenu < ActiveRecord::Base
   validates_presence_of :url, :on => :create
   validates_presence_of :location, :on => :create
    
-  validates :item_id, :uniqueness => { :scope => [:item_type, :event_id] }
+  # validates :item_id, :uniqueness => { :scope => [:item_type, :event_id, :location] }, :if => :is_static_item?
 
   default_scope order("item_order ASC")
 
@@ -18,5 +18,9 @@ class EventMenu < ActiveRecord::Base
     else
       custom_title
     end
+  end
+  
+  def is_static_item?
+    item_type == "static_item"
   end
 end

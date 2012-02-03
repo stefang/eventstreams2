@@ -79,11 +79,12 @@ $(document).ready(function(){
 	});
 	
   var create_menu_item = function(user_id, event_id, location, item_type, item_id, title, url, el) {
+    item_order = el.index() + 1;
+    el.addClass = "saving"
     $('#ajax_status').show().empty().append("Saving new menu item");
-    $.post("/users/"+user_id+"/events/"+event_id+"/event_menus", {location: location, item_type: item_type, item_id: item_id, title: title, url: url}, function(data){
-       console.log(data);
+    $.post("/users/"+user_id+"/events/"+event_id+"/event_menus", {location: location, item_type: item_type, item_id: item_id, title: title, url: url, item_order: item_order}, function(data){
        if (data != "false") {
-         el.attr('id', 'event_menu_'+data).find('.title').addClass('editable');
+         el.attr('id', 'event_menu_'+data).find('.title').removeClass('saving').addClass('editable');
        }
     });   
   }
@@ -188,6 +189,7 @@ $(document).ready(function(){
      type: flashType
     });
   }
+  
 	$("input.datepicker").datepicker({dateFormat: "dd-mm-yy"});
 	$("#ui-datepicker-div").hide();
 	
