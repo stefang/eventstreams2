@@ -19,6 +19,6 @@
         %li[sponsor]{:class=> sponsor.published ? '':'disabled'}
           = link_to 'Edit', edit_user_event_sponsor_path(current_user, @event, sponsor), :class=>'button manage'
           = sponsor.name
-          %span
+          %span.url
             = "#{sponsor.url}"
           = link_to 'Delete', user_event_sponsor_path(current_user, @event, sponsor), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

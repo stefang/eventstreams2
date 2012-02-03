@@ -23,6 +23,6 @@
         %li[story]
           = link_to 'Edit', edit_user_event_event_news_item_path(current_user, @event, story), :class=>'button manage'
           = story.headline
-          %span
+          %span.url
             = story.item_date.to_s(:form_display)
           = link_to 'Delete', user_event_event_news_item_path(current_user, @event, story), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

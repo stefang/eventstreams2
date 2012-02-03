@@ -23,6 +23,6 @@
         %li[speaker]{:class=> speaker.published ? '':'disabled'}
           = link_to 'Edit', edit_user_event_speaker_path(current_user, @event, speaker), :class=>'button manage'
           = speaker.name
-          %span
+          %span.url
             = "speakers/#{speaker.slug}"
           = link_to 'Delete', user_event_speaker_path(current_user, @event, speaker), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

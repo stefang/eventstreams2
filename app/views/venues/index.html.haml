@@ -17,6 +17,6 @@
         %li[venue]{:class=> venue.published ? '':'disabled'}
           = link_to 'Edit', edit_user_event_venue_path(current_user, @event, venue), :class=>'button manage'
           = venue.name
-          %span
+          %span.url
             = "#{venue.slug}"
           = link_to 'Delete', user_event_venue_path(current_user, @event, venue), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'
