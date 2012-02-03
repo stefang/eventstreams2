@@ -9,7 +9,9 @@ class EventMenu < ActiveRecord::Base
   validates_presence_of :location, :on => :create
    
   validates :item_id, :uniqueness => { :scope => [:item_type, :event_id] }
-  
+
+  default_scope order("item_order ASC")
+
   def display_title
     if custom_title.blank?
       title

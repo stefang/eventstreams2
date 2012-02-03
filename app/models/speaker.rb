@@ -15,7 +15,8 @@ class Speaker < ActiveRecord::Base
   }  
 
   scope :published, where(:published => true)
-
+  default_scope order("item_order ASC")
+  
   validates_presence_of :name, :on => :create
   validates_presence_of :event_id, :on => :create
   

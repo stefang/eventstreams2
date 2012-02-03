@@ -16,6 +16,8 @@ class Sponsor < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :url
   validates_presence_of :event_id
+
+  default_scope order("item_order ASC")
   
   def first_ten_words
     name.split(/\s+/)[0..9].compact.join(" ")

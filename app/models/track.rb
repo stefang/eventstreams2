@@ -10,6 +10,8 @@ class Track < ActiveRecord::Base
   validates_presence_of :title, :on => :create
   validates_presence_of :event_id, :on => :create
   
+  default_scope order("item_order ASC")
+
   def first_ten_words
     title.split(/\s+/)[0..9].compact.join(" ")
   end
