@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.0'
-
+gem 'jquery-rails'
 gem 'mysql2'
 gem 'haml'
 gem 'devise'
@@ -23,8 +23,6 @@ group :assets do
   gem "execjs"
   gem "therubyracer"
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
