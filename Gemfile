@@ -11,6 +11,7 @@ gem 'geocoder'
 
 group :development do
   gem "nifty-generators"
+  gem 'capistrano'
 end
 
 # Gems used only for assets and not required
@@ -31,9 +32,6 @@ gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
@@ -44,5 +42,5 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 1.2'
   gem 'launchy'
+  gem "mocha"
 end
-gem "mocha", :group => :test
