@@ -10,7 +10,7 @@
         %li[talk]{:class=> talk.published ? '':'disabled'}
           = link_to 'Edit', edit_user_event_talk_path(current_user, @event, talk), :class=>'button manage'
           %p.combo
-            = talk.title
+            = talk.display_title
             %span.inline
               = "#{talk.track.title}" unless talk.track.blank?
           %span.live_edit

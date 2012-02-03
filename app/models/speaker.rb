@@ -12,13 +12,15 @@ class Speaker < ActiveRecord::Base
     :convert_options => {
          :all => "-strip -colorspace RGB", 
          :thumb => "-quality 92" 
-    }  
+  }  
 
-    validates_presence_of :name, :on => :create
-    validates_presence_of :event_id, :on => :create
-    
-    def first_ten_words
-      name.split(/\s+/)[0..9].compact.join(" ")
-    end
+  scope :published, where(:published => true)
+
+  validates_presence_of :name, :on => :create
+  validates_presence_of :event_id, :on => :create
+  
+  def first_ten_words
+    name.split(/\s+/)[0..9].compact.join(" ")
+  end
     
 end

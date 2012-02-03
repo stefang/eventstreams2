@@ -20,7 +20,7 @@
               %td.description
                 %ul
                   %li.header
-                    %h4= link_to talk.title, talk
+                    %h4= link_to talk.display_title, talk
                   -unless talk.description.blank?
                     %li= truncate(talk.description, :length => 175)
                   -if talk.speakers.any?
