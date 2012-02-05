@@ -45,6 +45,9 @@
               %label
                 = check_box_tag "talk[speaker_ids][]", speaker.id, talk_has_speaker?(speaker)
                 = speaker.name
+    %li.select
+      = f.label :display_type
+      = f.select :display_type,  ["normal", "condensed"]   
     %li.published
       This talk is
       %em{:class => @talk.published ? "visible" : "hidden"}

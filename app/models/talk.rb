@@ -2,7 +2,7 @@ class Talk < ActiveRecord::Base
   extend FriendlyId
   friendly_id :first_ten_words, :use => :scoped, :scope => :event
 
-  attr_accessible :title, :description, :event_id, :slug, :published, :item_order, :duration, :track_id, :venue_id, :speaker_ids, :start
+  attr_accessible :title, :description, :event_id, :slug, :published, :item_order, :duration, :track_id, :venue_id, :speaker_ids, :start, :display_type
   
   belongs_to :track
   belongs_to :venue

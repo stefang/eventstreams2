@@ -11,7 +11,7 @@
         %h5.day_header= date.to_s(:programme_header)
         %table.programme  
           - day_talks.each do |talk|
-            %tr
+            %tr{:class => talk.display_type}
               %td.time
                 =talk.start.to_s(:time)
                 -unless talk.duration.blank? || talk.duration < 1

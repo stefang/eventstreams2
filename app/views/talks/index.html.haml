@@ -7,7 +7,7 @@
     %h3 Your Event talks
     %ul
       - for talk in @talks
-        %li[talk]{:class=> talk.published ? '':'disabled'}
+        %li[talk]{:class=> talk.published ? "#{talk.display_type}":"#{talk.display_type} disabled"}
           = link_to 'Edit', edit_user_event_talk_path(current_user, @event, talk), :class=>'button manage'
           %p.combo
             = talk.display_title
