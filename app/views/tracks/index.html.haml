@@ -30,9 +30,9 @@
 
 - else
 
-- if @tracks.empty?
-  %p.empty_menu
-    Tracks are optional, you don't need to create one. Tracks are for the thematic strands in your conference, i.e. 'Talks' and 'Workshops' or 'Code' and 'Design'.
+  - if @tracks.empty?
+    %p.empty_menu
+      Tracks are optional, you don't need to create one. Tracks are for the thematic strands in your conference, i.e. 'Talks' and 'Workshops' or 'Code' and 'Design'.
 
   %section.item_list
     = link_to "New Track", new_user_event_track_path, :class=>'button add'
