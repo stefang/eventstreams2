@@ -1,22 +1,8 @@
 - title "Locations | #{@event.title}"
  
-- if on_subdomain?
-  %h1 Location
-  .map_wrap.venuepage
-    #map_canvas.venues
-  %section.event_venues
-    %ul.location_list
-      =render @venues
-
-- else
-  %section.item_list
-    = link_to "New Location", new_user_event_venue_path, :class=>'button add'
-    %h3 Locations
-    %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'venues'}}
-      - for venue in @venues
-        %li[venue]{:class=> venue.published ? '':'disabled'}
-          = link_to 'Edit', edit_user_event_venue_path(current_user, @event, venue), :class=>'button manage'
-          = venue.name
-          %span.url
-            = "#{venue.slug}"
-          = link_to 'Delete', user_event_venue_path(current_user, @event, venue), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'
+%h1 Location
+.map_wrap.venuepage
+  #map_canvas.venues
+%section.event_venues
+  %ul.location_list
+    =render @venues
