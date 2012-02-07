@@ -1,9 +1,12 @@
 - title "Event Menus"
+-unless @event.menu_order_main.any?
+  %p.empty_menu
+    Your event's main menu is currently empty, drag up available items to add and order
 
 %section.item_list
   %h3 
     Main Navigation
-    %span drag items order menu, double click to edit title
+    %span drag items to order menu, double click to edit title
     
   #ajax_status
   %ul#main_event_menu.sortable_target.connected{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'event_menus', :location => 'main'}}
