@@ -31,14 +31,14 @@
     Available 
     %span drag item up to add to menu
   %ul#sortable_source.connected
-    - unless @event.published_event_pages.blank?
-      - @event.published_event_pages.each do |event_menu|
+    - unless @event.event_pages.blank?
+      - @event.event_pages.published.each do |event_menu|
         -unless @active_items.include? "event_pages_#{event_menu.id}"
           %li.event_menu{:data => {:type => "event_page",:id => event_menu.id}}
             %span.title= event_menu.title
             %span.url= "/#{event_menu.slug}"
-    - unless @event.published_links.blank?
-      - @event.published_links.each do |event_menu|
+    - unless @event.links.blank?
+      - @event.links.published.each do |event_menu|
         -unless @active_items.include? "event_links_#{event_menu.id}"
           %li.event_menu{:data => {:type => "event_link",:id => event_menu.id}}
             %span.title= event_menu.title
@@ -48,23 +48,23 @@
       %li.event_menu{:data => {:type => 'static_item', :id => 'home'}}
         %span.title Home
         %span.url /
-    - if !@event.owned_news_items.blank? && !@active_items.include?("static_items_news")
+    - if !@event.news_items.published.blank? && !@active_items.include?("static_items_news")
       %li.event_menu{:data => {:type => 'static_item', :id => 'news'}}
         %span.title News
         %span.url /news
-    - if !@event.owned_speakers.blank? && !@active_items.include?("static_items_speakers")
+    - if !@event.speakers.published.blank? && !@active_items.include?("static_items_speakers")
       %li.event_menu{:data => {:type => 'static_item', :id => 'speakers'}}
         %span.title Speakers
         %span.url /speakers
-    - if !@event.published_talks.blank? && !@active_items.include?("static_items_programme")
+    - if !@event.talks.published.blank? && !@active_items.include?("static_items_programme")
       %li.event_menu{:data => {:type => 'static_item', :id => 'programme'}}
         %span.title Programme
         %span.url /programme
-    - if !@event.owned_venues.blank? && !@active_items.include?("static_items_location")
+    - if !@event.venues.published.blank? && !@active_items.include?("static_items_location")
       %li.event_menu{:data => {:type => 'static_item', :id => 'location'}}
         %span.title Location
         %span.url /location
-    - if !@event.owned_sponsors.blank? && !@active_items.include?("static_items_sponsors")
+    - if !@event.sponsors.published.blank? && !@active_items.include?("static_items_sponsors")
       %li.event_menu{:data => {:type => 'static_item', :id => 'sponsors'}}
         %span.title Sponsors
         %span.url /sponsors
