@@ -1,0 +1,70 @@
+- title "Event Menus"
+-unless @event.menu_order_main.any?
+  %p.empty_menu
+    Your event's main menu is currently empty, drag up available items to add and order
+
+%section.item_list
+  %h3 
+    Main Navigation
+    %span drag items to order menu, double click to edit title
+    
+  #ajax_status
+  %ul#main_event_menu.sortable_target.connected{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'event_menus', :location => 'main'}}
+    - for event_menu in @event_menus_main
+      %li[event_menu]{:data => {:type => "#{event_menu.item_type.tableize.singularize}",:id => event_menu.item_type.tableize.singularize != 'static_item' ? "#{event_menu.item_id}" : "#{event_menu.title.downcase}"}}
+        %span.title.editable= event_menu.display_title
+        %span.url= "#{event_menu.url}"
+
+%section.item_list
+  %h3 
+    Footer Navigation
+    %span drag items to order menu, double click to edit title
+
+  %ul#footer_event_menu.sortable_target.connected{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'event_menus', :location => 'footer'}}
+    - for event_menu in @event_menus_footer
+      %li[event_menu]{:data => {:type => "#{event_menu.item_type.tableize.singularize}",:id => event_menu.item_type.tableize.singularize != 'static_item' ? "#{event_menu.item_id}" : "#{event_menu.title.downcase}"}}
+        %span.title.editable= event_menu.display_title
+        %span.url= "#{event_menu.url}"
+
+%section.item_list
+  %h3 
+    Available 
+    %span drag item up to add to menu
+  %ul#sortable_source.connected
+    - unless @event.published_event_pages.blank?
+      - @event.published_event_pages.each do |event_menu|
+        -unless @active_items.include? "event_pages_#{event_menu.id}"
+          %li.event_menu{:data => {:type => "event_page",:id => event_menu.id}}
+            %span.title= event_menu.title
+            %span.url= "/#{event_menu.slug}"
+    - unless @event.published_links.blank?
+      - @event.published_links.each do |event_menu|
+        -unless @active_items.include? "event_links_#{event_menu.id}"
+          %li.event_menu{:data => {:type => "event_link",:id => event_menu.id}}
+            %span.title= event_menu.title
+            %span.url= "#{event_menu.url}"
+    
+    - if !@active_items.include?("static_items_home")
+      %li.event_menu{:data => {:type => 'static_item', :id => 'home'}}
+        %span.title Home
+        %span.url /
+    - if !@event.owned_news_items.blank? && !@active_items.include?("static_items_news")
+      %li.event_menu{:data => {:type => 'static_item', :id => 'news'}}
+        %span.title News
+        %span.url /news
+    - if !@event.owned_speakers.blank? && !@active_items.include?("static_items_speakers")
+      %li.event_menu{:data => {:type => 'static_item', :id => 'speakers'}}
+        %span.title Speakers
+        %span.url /speakers
+    - if !@event.published_talks.blank? && !@active_items.include?("static_items_programme")
+      %li.event_menu{:data => {:type => 'static_item', :id => 'programme'}}
+        %span.title Programme
+        %span.url /programme
+    - if !@event.owned_venues.blank? && !@active_items.include?("static_items_location")
+      %li.event_menu{:data => {:type => 'static_item', :id => 'location'}}
+        %span.title Location
+        %span.url /location
+    - if !@event.owned_sponsors.blank? && !@active_items.include?("static_items_sponsors")
+      %li.event_menu{:data => {:type => 'static_item', :id => 'sponsors'}}
+        %span.title Sponsors
+        %span.url /sponsors

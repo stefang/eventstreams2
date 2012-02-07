@@ -1,4 +1,4 @@
--if @event.owned_event_assets.any?
+-if @event.event_assets.any?
   %li.asset_list
     %ul
       - for asset in @event.owned_event_assets

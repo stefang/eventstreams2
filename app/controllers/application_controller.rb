@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
+  
   before_filter :define_at_user
   before_filter :enable_admin_side_menu
   protect_from_forgery
@@ -10,6 +11,14 @@ class ApplicationController < ActionController::Base
   
   def on_subdomain?
     request.subdomain(SUBDOMAIN_LEVEL).present? && request.subdomain(SUBDOMAIN_LEVEL) != 'www'
+  end
+  
+  def set_layout
+    if on_subdomain?
+      'event'
+    else
+      'application'
+    end
   end
   
   def enable_admin_side_menu

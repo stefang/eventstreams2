@@ -1,0 +1,15 @@
+- title "Speakers | #{@event.title}" 
+
+%section.item_list
+  = link_to "New Speaker", new_admin_event_speaker_path, :class=>'button add'
+  %h3 
+    Your Event Speakers
+  #ajax_status
+  %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'speakers'}}
+    - for speaker in @speakers
+      %li[speaker]{:class=> speaker.published ? '':'disabled'}
+        = link_to 'Edit', edit_admin_event_speaker_path(@event, speaker), :class=>'button manage'
+        = speaker.name
+        %span.url
+          = "speakers/#{speaker.slug}"
+        = link_to 'Delete', admin_event_speaker_path(@event, speaker), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

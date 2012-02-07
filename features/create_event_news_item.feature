@@ -6,7 +6,7 @@ Feature: Create event news item
   Scenario: User creates published news item successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "News"
@@ -22,7 +22,7 @@ Feature: Create event news item
   Scenario: User creates news item successfully with a non default date
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "News"
@@ -41,7 +41,7 @@ Feature: Create event news item
   Scenario: User creates hidden news item successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "News"
@@ -56,7 +56,7 @@ Feature: Create event news item
   Scenario: User creates and deletes news item successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "News"

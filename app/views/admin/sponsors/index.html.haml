@@ -1,0 +1,15 @@
+- title "Event Sponsors"
+
+%section.item_list
+  = link_to "New Sponsor", new_admin_event_sponsor_path, :class=>'button add'
+  %h3 
+    Your Event Sponsors
+  #ajax_status
+  %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'sponsors'}}
+    - for sponsor in @sponsors
+      %li[sponsor]{:class=> sponsor.published ? '':'disabled'}
+        = link_to 'Edit', edit_admin_event_sponsor_path(@event, sponsor), :class=>'button manage'
+        = sponsor.name
+        %span.url
+          = "#{sponsor.url}"
+        = link_to 'Delete', admin_event_sponsor_path(@event, sponsor), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

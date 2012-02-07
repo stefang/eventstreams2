@@ -11,10 +11,9 @@ Feature: Create event
     When I fill in "Title" with "My Event"
     And I fill in "Subdomain" with "myevent"
     And I attach the file "test.png" to "Event Logo (Resized to fit in 210px x 90px)"
-    
     And I press "Save"
     Then I should see "Successfully created event"
-    And I should be on my user events index page
+    And I should be on my admin events index page
     Then I should see "My Event"
     Then I follow "Manage"
     And I check "Show"

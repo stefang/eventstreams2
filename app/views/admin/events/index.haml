@@ -1,16 +1,16 @@
 - title "Your events on Eventstreams"
 
 %section.item_list.events
-  =link_to "New Event", new_user_event_path(@user), :class=>'button add'
+  =link_to "New Event", new_admin_event_path, :class=>'button add'
   %h3 Your Events
   %ul
     - for event in @events
       %li{:class=> event.published ? '':'disabled'}
-        = link_to 'Manage', edit_user_event_path(@user, event), :class=>'button manage'
+        = link_to 'Manage', edit_admin_event_path(event), :class=>'button manage'
         = event.title
         - unless event.start_date.blank?
           %abbr.date
             = event.start_date.to_date.to_s(:dmy_long)
         = link_to root_url(:subdomain => event.subdomain), root_url(:subdomain => event.subdomain), :class => event.published ? 'event_link active' : 'event_link disabled'
 
-        = link_to 'Delete', user_event_path(@user, event), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'
+        = link_to 'Delete', admin_event_path(event), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

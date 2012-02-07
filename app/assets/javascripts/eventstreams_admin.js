@@ -82,7 +82,7 @@ $(document).ready(function(){
     item_order = el.index() + 1;
     el.addClass = "saving"
     $('#ajax_status').show().empty().append("Saving new menu item");
-    $.post("/users/"+user_id+"/events/"+event_id+"/event_menus", {location: location, item_type: item_type, item_id: item_id, title: title, url: url, item_order: item_order}, function(data){
+    $.post("/admin/events/"+event_id+"/event_menus", {location: location, item_type: item_type, item_id: item_id, title: title, url: url, item_order: item_order}, function(data){
        if (data != "false") {
          el.attr('id', 'event_menu_'+data).find('.title').removeClass('saving').addClass('editable');
        }
@@ -91,13 +91,13 @@ $(document).ready(function(){
   
   var destroy_menu_item = function(user_id, event_id, menu_item_id) {
     $('#ajax_status').show().empty().append("Deleting new menu item");
-    $.post("/users/"+user_id+"/events/"+event_id+"/event_menus/"+menu_item_id+"/destroy", function(data){
+    $.post("/admin/events/"+event_id+"/event_menus/"+menu_item_id+"/destroy", function(data){
     });   
   }
 
 	var update_list_order = function(user_id, event_id, model, location, serialize) {
   	$('#ajax_status').show().empty().append("Saving new order");
-    $.post("/users/"+user_id+"/events/"+event_id+"/"+model+"/update_order", {menu_location: location, item_order: serialize}, function(data){
+    $.post("/admin/events/"+event_id+"/"+model+"/update_order", {menu_location: location, item_order: serialize}, function(data){
        $('#ajax_status').empty().append(data);
     });
     
@@ -166,7 +166,7 @@ $(document).ready(function(){
 	
   var content_edit_save_value = function(el, user_id, event_id, menu_item_id, value) {
   	$('#ajax_status').show().empty().append("Saving new title");
-    $.post("/users/"+user_id+"/events/"+event_id+"/event_menus/"+menu_item_id+"/update", {custom_title: value}, function(data){
+    $.post("/admin/events/"+event_id+"/event_menus/"+menu_item_id+"/update", {custom_title: value}, function(data){
        $('#ajax_status').empty().append(data);
        if (!data.match('failed')) {
          content_edit_update_value(el, value);

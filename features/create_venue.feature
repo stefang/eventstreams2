@@ -6,7 +6,7 @@ Feature: Create event venue
   Scenario: User creates initial venue successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Locations"
@@ -21,7 +21,7 @@ Feature: Create event venue
   Scenario: User creates initial venue unsuccessfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Locations"
@@ -34,7 +34,7 @@ Feature: Create event venue
   Scenario: User edits venue successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Locations"
@@ -53,7 +53,7 @@ Feature: Create event venue
   Scenario: User deletes venue successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Locations"

@@ -14,13 +14,13 @@
         .inner
           %h3#site_logo
             -if signed_in?
-              =link_to "Eventstreams", user_events_path(@user)
+              =link_to "Eventstreams", admin_events_path()
             -else
               =link_to "Eventstreams", root_path
           %nav#main
             %ul
               -if signed_in?
-                %li=link_to "Your Events", user_events_path(@user)
+                %li=link_to "Your Events", admin_events_path()
                 %li=link_to t('authentication.sign_out'), destroy_user_session_path, :method => :delete
               -else
                 %li=link_to t('authentication.sign_in'), new_user_session_path
@@ -42,16 +42,16 @@
           -if admin_menu_enabled?
             %nav#event_content
               %ul
-                %li= link_to "Event Details", edit_user_event_path(current_user, @event), :class=>'button'
-                %li= link_to "Menu Order", user_event_event_menus_path(current_user, @event), :class=>'button'
-                %li= link_to "Pages &amp; Links".html_safe, user_event_event_pages_path(current_user, @event), :class=>'button'
-                %li= link_to "Locations", user_event_venues_path(current_user, @event), :class=>'button'
-                %li= link_to "Speakers", user_event_speakers_path(current_user, @event), :class=>'button'
-                %li= link_to "Talks", user_event_talks_path(current_user, @event), :class=>'button'
-                %li= link_to "Tracks", user_event_tracks_path(current_user, @event), :class=>'button'
-                %li= link_to "News", user_event_event_news_items_path(current_user, @event), :class=>'button'
-                %li= link_to "Sponsors", user_event_sponsors_path(current_user, @event), :class=>'button'
-                %li= link_to "Image Assets", user_event_event_assets_path(current_user, @event), :class=>'button'
+                %li= link_to "Event Details", edit_admin_event_path(@event), :class=>'button'
+                %li= link_to "Menu Order", admin_event_event_menus_path(@event), :class=>'button'
+                %li= link_to "Pages &amp; Links".html_safe, admin_event_event_pages_path(@event), :class=>'button'
+                %li= link_to "Locations", admin_event_venues_path(@event), :class=>'button'
+                %li= link_to "Speakers", admin_event_speakers_path(@event), :class=>'button'
+                %li= link_to "Talks", admin_event_talks_path(@event), :class=>'button'
+                %li= link_to "Tracks", admin_event_tracks_path(@event), :class=>'button'
+                %li= link_to "News", admin_event_event_news_items_path(@event), :class=>'button'
+                %li= link_to "Sponsors", admin_event_sponsors_path(@event), :class=>'button'
+                %li= link_to "Image Assets", admin_event_event_assets_path(@event), :class=>'button'
                 / %li= link_to "Manage Tweets", user_event_tweets_path(current_user, @event), :class=>'button'
             %section.event_content
               = yield

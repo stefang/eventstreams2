@@ -9,7 +9,7 @@ Feature: Create talk
     And "myevent" has a published track called "mytrack"
     And "myevent" has a venue called "posh_hotel"
     And "myevent" has a programme menu item
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Talks"
     And I follow "New Talk"
@@ -34,7 +34,7 @@ Feature: Create talk
     And "myevent" has a published speaker called "Bob"
     And "myevent" has a published speaker called "Jim"
     And "myevent" has an upublished speaker called "Tim"
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Talks"
     And I follow "New Talk"
@@ -56,7 +56,7 @@ Feature: Create talk
     And I have an event called "myevent"
     And "myevent" has a published track called "mytrack"
     And "myevent" has a programme menu item
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Talks"
     And I follow "New Talk"
@@ -83,7 +83,7 @@ Feature: Create talk
     And "myevent" has a published track called "mytrack"
     And "myevent" has a venue called "posh_hotel"
     And "myevent" has a programme menu item
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Talks"
     And I follow "New Talk"
@@ -107,7 +107,7 @@ Feature: Create talk
     And "myevent" has a published track called "mytrack"
     And "myevent" has a venue called "posh_hotel"
     And "myevent" has a programme menu item
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Talks"
     And I follow "New Talk"

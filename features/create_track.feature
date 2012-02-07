@@ -6,7 +6,7 @@ Feature: Create event track
   Scenario: User creates initial track successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Tracks"
@@ -20,7 +20,7 @@ Feature: Create event track
   Scenario: User edits initial track successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Tracks"
@@ -39,7 +39,7 @@ Feature: Create event track
   Scenario: User deletes track successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Tracks"
@@ -57,7 +57,7 @@ Feature: Create event track
     Given I am a new, authenticated user
     And I have an event called "myevent"
     And "myevent" has a published track called "mytrack"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Tracks"
@@ -67,7 +67,7 @@ Feature: Create event track
     Given I am a new, authenticated user
     And I have an event called "myevent"
     And "myevent" has an unpublished track called "mytrack"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Tracks"

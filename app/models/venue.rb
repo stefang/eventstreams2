@@ -12,6 +12,7 @@ class Venue < ActiveRecord::Base
   validates_presence_of :event_id, :on => :create
   validates_presence_of :postcode, :on => :create
   
+  scope :published, where(:published => true)
   default_scope order("item_order ASC")
   
   def first_ten_words

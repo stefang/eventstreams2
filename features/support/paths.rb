@@ -11,8 +11,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
-    when /my user events index page/
-      user_events_path(@user)
+    when /my admin events index page/
+      admin_events_path
     when /the (.*) subdomain/
       root_url(:subdomain => $1)
     when /the (.*) programme page/

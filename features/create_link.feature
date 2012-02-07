@@ -6,7 +6,7 @@ Feature: Create link
   Scenario: User creates blog link successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Pages & Links"
@@ -20,7 +20,7 @@ Feature: Create link
   Scenario: User creates blog link unsuccessfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Pages & Links"
@@ -32,7 +32,7 @@ Feature: Create link
   Scenario: User edits blog link unsuccessfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Pages & Links"
@@ -50,7 +50,7 @@ Feature: Create link
   Scenario: User deleted blog link successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Pages & Links"

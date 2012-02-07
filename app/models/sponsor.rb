@@ -17,6 +17,7 @@ class Sponsor < ActiveRecord::Base
   validates_presence_of :url
   validates_presence_of :event_id
 
+  scope :published, where(:published => true)
   default_scope order("item_order ASC")
   
   def first_ten_words

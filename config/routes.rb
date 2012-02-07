@@ -15,13 +15,13 @@ Eventstreams2::Application.routes.draw do
    match "/:id" => "event_pages#show"
   end
   
+  # home page routes
+  
   root :to => "pages#home"
 
-  resources :events, :only => [:index]
+  # admin routes
   
-  #admin routes
-    
-  resources :users do
+  namespace :admin do
     resources :events do
       resources :event_news_items
       resources :event_pages
@@ -34,16 +34,15 @@ Eventstreams2::Application.routes.draw do
       resources :event_menus
       resources :event_assets
     end
+  
+    post 'events/:event_id/event_menus', :to => 'event_menus#create'
+    post 'events/:event_id/event_menus/:id/update', :to => 'event_menus#update'
+    post 'events/:event_id/event_menus/:id/destroy', :to => 'event_menus#destroy'
+    post 'events/:event_id/event_menus/update_order', :to => 'event_menus#update_order'
+  
+    post 'events/:event_id/speakers/update_order', :to => 'speakers#update_order'
+    post 'events/:event_id/tracks/update_order', :to => 'tracks#update_order'
+    post 'events/:event_id/sponsors/update_order', :to => 'sponsors#update_order'
+    post 'events/:event_id/venues/update_order', :to => 'venues#update_order'
   end
-  
-  post 'users/:user_id/events/:event_id/event_menus', :to => 'event_menus#create'
-  post 'users/:user_id/events/:event_id/event_menus/:id/update', :to => 'event_menus#update'
-  post 'users/:user_id/events/:event_id/event_menus/:id/destroy', :to => 'event_menus#destroy'
-  post 'users/:user_id/events/:event_id/event_menus/update_order', :to => 'event_menus#update_order'
-  
-  post 'users/:user_id/events/:event_id/speakers/update_order', :to => 'speakers#update_order'
-  post 'users/:user_id/events/:event_id/tracks/update_order', :to => 'tracks#update_order'
-  post 'users/:user_id/events/:event_id/sponsors/update_order', :to => 'sponsors#update_order'
-  post 'users/:user_id/events/:event_id/venues/update_order', :to => 'venues#update_order'
-  
 end

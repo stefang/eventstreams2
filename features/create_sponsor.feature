@@ -6,7 +6,7 @@ Feature: Create sponsor record
   Scenario: User creates sponsor successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Sponsors"
@@ -22,7 +22,7 @@ Feature: Create sponsor record
   Scenario: User creates sponsor unsuccessfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Sponsors"
@@ -34,7 +34,7 @@ Feature: Create sponsor record
   Scenario: User edits sponsor successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Sponsors"
@@ -54,7 +54,7 @@ Feature: Create sponsor record
   Scenario: User deletes sponsor successfully
     Given I am a new, authenticated user
     And I have an event called "myevent"
-    When I go to my user events index page
+    When I go to my admin events index page
     Then I should see "myevent"
     And I follow "Manage"
     And I follow "Sponsors"

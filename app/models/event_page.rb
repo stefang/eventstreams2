@@ -8,6 +8,7 @@ class EventPage < ActiveRecord::Base
   validates_presence_of :title, :on => :create
   validates_presence_of :event_id, :on => :create
 
+  scope :published, where(:published => true)
   
   def first_ten_words
     title.split(/\s+/)[0..9].compact.join(" ")

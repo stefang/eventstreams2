@@ -8,7 +8,7 @@ Feature: Create event image asset
     And I have an event called "myevent"
     And "myevent" has a published track called "mytrack"
     And "myevent" event "mytrack" track has a published talk called "mytalk"
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Image Assets"
     And I follow "New Asset"
@@ -23,7 +23,7 @@ Feature: Create event image asset
     And I have an event called "myevent"
     And "myevent" has a published track called "mytrack"
     And "myevent" event "mytrack" track has a published talk called "mytalk"
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Image Assets"
     And I follow "New Asset"
@@ -43,7 +43,7 @@ Feature: Create event image asset
     And I have an event called "myevent"
     And "myevent" has a published track called "mytrack"
     And "myevent" event "mytrack" track has a published talk called "mytalk"
-    When I go to the events page
+    When I go to the admin events page
     And I follow "Manage"
     And I follow "Image Assets"
     And I follow "New Asset"

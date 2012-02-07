@@ -8,6 +8,9 @@ class EventNewsItem < ActiveRecord::Base
   validates_presence_of :headline, :on => :create
   validates_presence_of :event_id, :on => :create
   validates_presence_of :item_date, :on => :create
+  
+  scope :published, where(:published => true)
+  default_scope order("item_date DESC")
 
   def first_ten_words
     headline.split(/\s+/)[0..9].compact.join(" ")

@@ -17,7 +17,7 @@ module ApplicationHelper
   end
   
   def find_asset_url(asset_id)
-    for asset in @event.owned_event_assets
+    for asset in @event.event_assets
       if asset.id == asset_id.to_i
         return image_tag(asset.asset.url)
       end 

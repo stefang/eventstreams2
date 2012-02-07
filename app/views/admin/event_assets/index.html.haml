@@ -1,0 +1,14 @@
+- title "Event Assets | #{@event.title}"
+
+%section.item_list
+  = link_to "New Asset", new_admin_event_event_asset_path, :class=>'button add'
+  %h3 
+    Your Event Assets
+  %ul
+    - for asset in @event_assets
+      %li[asset]
+        = link_to 'Edit', edit_admin_event_event_asset_path(@event, asset), :class=>'button manage'
+        = asset.title
+        %span.asset_thumbnail
+          = image_tag(asset.asset.url(:tiny))
+        = link_to 'Delete', admin_event_event_asset_path(@event, asset), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

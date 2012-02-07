@@ -1,0 +1,13 @@
+- title "Locations | #{@event.title}"
+ 
+%section.item_list
+  = link_to "New Location", new_admin_event_venue_path, :class=>'button add'
+  %h3 Locations
+  %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'venues'}}
+    - for venue in @venues
+      %li[venue]{:class=> venue.published ? '':'disabled'}
+        = link_to 'Edit', edit_admin_event_venue_path(@event, venue), :class=>'button manage'
+        = venue.name
+        %span.url
+          = "#{venue.slug}"
+        = link_to 'Delete', admin_event_venue_path(@event, venue), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

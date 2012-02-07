@@ -1,0 +1,18 @@
+- title "Programme of talks | #{@event.title}" 
+
+- if @tracks.empty?
+  %p.empty_menu
+    Tracks are optional, you don't need to create one. Tracks are for the thematic strands in your conference, i.e. 'Talks' and 'Workshops' or 'Code' and 'Design'.
+
+%section.item_list
+  = link_to "New Track", new_admin_event_track_path, :class=>'button add'
+  %h3 Your Event Tracks
+  #ajax_status
+  %ul#sortable{:data => {:user_id => current_user.id, :event_id => @event.id, :model => 'tracks'}}
+    - for track in @tracks
+      %li[track]{:class=> track.published ? '':'disabled'}
+        = link_to 'Edit', edit_admin_event_track_path(@event, track), :class=>'button manage'
+        = track.title
+        %span.url
+          = "/tracks/#{track.slug}"
+        = link_to 'Delete', admin_event_track_path(@event, track), :confirm => 'Are you sure?', :method => :delete, :class=>'button delete'

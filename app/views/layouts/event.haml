@@ -10,9 +10,9 @@
       %nav#event_admin_bar
         %ul
           -if @event.published?
-            %li=link_to "Event Published", edit_user_event_url(current_user, @event, :host => without_secondary_subdomain)
+            %li=link_to "Event Published", edit_admin_event_url(@event, :host => without_secondary_subdomain)
           -else
-            %li=link_to "Event Hidden", edit_user_event_url(current_user, @event, :host => without_secondary_subdomain)
+            %li=link_to "Event Hidden", edit_admin_event_url(@event, :host => without_secondary_subdomain)
       -if @event.menu_order_main.any?
         %nav#main
           .inner

@@ -1,0 +1,27 @@
+= form_for [:admin, @event, @talk, @speaker], :html => { :multipart => true } do |f|
+  %ol
+    -unless f.error_messages.blank?
+      %li
+        = f.error_messages
+    %li
+      = f.label :name
+      = f.text_field :name
+    %li
+      = f.label :biog
+      = f.text_area :biog
+    %li.image_upload
+      -if :portrait
+        = image_tag(@speaker.portrait.url(:tiny))
+      = f.label :portrait, "Speaker Image (Less than 1mb)"
+      = f.file_field :portrait
+      %p.helptext Speakers will not appear on the front page unless an image has been uploaded
+    %li.published
+      This speaker is
+      %em{:class => @speaker.published ? "visible" : "hidden"}
+        = @speaker.published ? "Visible" : "Hidden"
+      %span
+        = f.label :published, "Show"
+        = f.check_box :published
+    %li
+      %button.button.save{:type => 'submit'}
+        Save
