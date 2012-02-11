@@ -1,7 +1,9 @@
 Eventstreams2::Application.routes.draw do
   
+  themes_for_rails
+
   devise_for :users
-  
+    
   # subdomain routes
 
   constraints(Subdomain) do

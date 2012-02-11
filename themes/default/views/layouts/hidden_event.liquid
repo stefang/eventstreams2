@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Theme Hidden {{ event.title }}</title>
+  </head>
+  <body>
+    <header>
+    <h1>{{ event.title }}</h1>
+    </header>
+    {{ content_for_layout }}
+    <footer>
+      {{ event.google_analytics }}
+    </footer>
+  </body>
+</html>
