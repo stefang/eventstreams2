@@ -54,7 +54,7 @@ class Event < ActiveRecord::Base
       return url
     end 
   end 
-    
-  liquid_methods :title, :tagline, :start_date, :end_date, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :event_logo, :facebook_url
+      
+  liquid_methods :title, :tagline, :start_date, :end_date, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :facebook_url
 
 end

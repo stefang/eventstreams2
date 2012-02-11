@@ -1,15 +1,20 @@
 <html>
   <head>
     <title>Themed {{ event.title }}</title>
+    <link rel="stylesheet" href="{{ event_stylesheet_screen }}" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ event_stylesheet_print }}" type="text/css" media="print">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
   </head>
   <body>
-    <header>
+    <header role="banner">
+    <img src="{{ event_logo_url_tiny }}" alt="event logo"/>
     <h1>{{ event.title }}</h1>
     </header>
+    <section role="content">
     {{ content_for_layout }}
-    <footer>
+    </section>
+    <footer role="contentinfo">
       {{ event.google_analytics }}
     </footer>
   </body>
 </html>
-
