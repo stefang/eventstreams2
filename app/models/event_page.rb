@@ -13,4 +13,6 @@ class EventPage < ActiveRecord::Base
   def first_ten_words
     title.split(/\s+/)[0..9].compact.join(" ")
   end
+  
+  liquid_methods :title, :content, :slug
 end

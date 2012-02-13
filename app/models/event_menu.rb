@@ -23,4 +23,6 @@ class EventMenu < ActiveRecord::Base
   def is_static_item?
     item_type == "static_item"
   end
+  
+  liquid_methods :display_title, :url
 end

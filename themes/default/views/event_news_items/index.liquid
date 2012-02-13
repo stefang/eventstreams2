@@ -1,0 +1,14 @@
+<!-- title "News | #{@event.title}" -->
+
+<h1>News</h1>
+<ul class="news_items">
+  {% for item in news_items %} 
+  <li>
+    <a href="{{ item.url }}">{{ item.headline }}</a>
+    <ul>
+      <li>{{ item.date}}</li>
+      <li>{{ item.content}}</li>
+    </ul>
+  </li>
+  {% endfor %}
+</ul>

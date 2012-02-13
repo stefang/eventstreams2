@@ -9,6 +9,13 @@
     <header role="banner">
     <img src="{{ event_logo_url_tiny }}" alt="event logo"/>
     <h1>{{ event.title }}</h1>
+    <nav>
+      {% for menu_item in event.menu_order_main %} 
+      <li>
+        <a href="{{ menu_item.url }}">{{ menu_item.display_title }}</a>
+      </li>
+      {% endfor %}
+    </nav>
     </header>
     <section role="content">
     {{ content_for_layout }}

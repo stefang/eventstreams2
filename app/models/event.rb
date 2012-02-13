@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   has_many :event_assets, :class_name => 'EventAsset', :foreign_key => :event_id, :dependent => :destroy
 
   has_many :menu_items, :class_name => 'EventMenu', :foreign_key => :event_id, :dependent => :destroy
-  has_many :menu_order_main, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'main'}
+  has_many :menu_order_main, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'main'}, :order => 'item_order ASC'
   has_many :menu_order_footer, :class_name => 'EventMenu', :foreign_key => :event_id, :conditions=>{:location => 'footer'}
   
   def validate_subdomain
@@ -55,6 +55,6 @@ class Event < ActiveRecord::Base
     end 
   end 
       
-  liquid_methods :title, :tagline, :start_date, :end_date, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :facebook_url
+  liquid_methods :menu_order_main, :title, :tagline, :start_date, :end_date, :description, :twitter_account, :twitter_hashtag, :google_analytics, :booking_url, :facebook_url
 
 end
