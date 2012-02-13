@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
 
+  theme 'default'
   layout :set_layout
 
   def index
