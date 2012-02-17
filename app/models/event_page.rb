@@ -14,5 +14,10 @@ class EventPage < ActiveRecord::Base
     title.split(/\s+/)[0..9].compact.join(" ")
   end
   
-  liquid_methods :title, :content, :slug
+  def formatted_content
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    markdown.render(content)
+  end
+    
+  liquid_methods :title, :formatted_content
 end

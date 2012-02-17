@@ -1,28 +1,14 @@
-- title "Programme of talks | #{@event.title}" 
+<!-- title "Programme of talks | #{@event.title}" -->
 
-- @tracks.each do |track, track_talks|
-  - if track
-    %h4.fontface_header= track.title
-  - elsif @tracks.many?
-    %h4.fontface_header Untracked        
-  - track_talks.group_by{|t| t.start.to_date }.each do |date, day_talks|
-    %section.programme_day
-      %h5.day_header= date.to_s(:programme_header)
-      %table.programme  
-        - day_talks.each do |talk|
-          %tr{:class => talk.display_type}
-            %td.time
-              =talk.start.to_s(:time)
-              -unless talk.duration.blank? || talk.duration < 1
-                \-
-                = (talk.start.to_time + talk.duration.minutes).to_s(:time)
-            %td.description
-              %ul
-                %li.header
-                  %h4= link_to talk.display_title, talk
-                -unless talk.description.blank?
-                  %li= truncate(talk.description, :length => 175)
-                -if talk.speakers.any?
-                  %li.speakers= talk.speakers.map { |s| "<a href='#{speaker_path(s)}'>#{s.name}</a>"}.to_sentence
-                -unless talk.venue.blank? 
-                  %li.venue= link_to "#{talk.venue.name}", venues_path
+{% for track in tracks %}
+<h4>{{ track.title }}</h4>
+  {% for date_talks in track.dates %}
+    <h5>{{ date_talks.date }}</h5>
+    {% for talk in date_talks.talks %}
+      <p>{{ talk.display_title }}</p>
+      {% for speaker in talk.speakers %}
+      <abbr>{{ speaker.name }}</abbr>
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}

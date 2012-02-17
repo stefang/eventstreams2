@@ -20,6 +20,12 @@ class Speaker < ActiveRecord::Base
   validates_presence_of :name, :on => :create
   validates_presence_of :event_id, :on => :create
   
+  liquid_methods :name, :url, :talks
+  
+  def url
+    "#{Rails.application.routes.url_helpers.speakers_path}/#{slug}"
+  end
+   
   def first_ten_words
     name.split(/\s+/)[0..9].compact.join(" ")
   end

@@ -1,0 +1,16 @@
+<!-- title "Speakers | #{@event.title}" -->
+
+<h1>Speakers</h1>
+<ul>
+  {% for speaker in speakers %} 
+  <li>
+    <a href="{{ speaker.url }}">{{ speaker.name }}</a>
+    {{ speaker.biog }}
+    <ul>
+      {% for talk in speaker.talks %} 
+      <li><a href="{{ talk.url }}">{{ talk.display_title }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>

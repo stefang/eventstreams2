@@ -10,6 +10,7 @@ gem 'paperclip', "~> 2.4"
 gem 'geocoder'
 gem 'liquid'
 gem 'themes_for_rails'
+gem 'redcarpet'
 
 group :development do
   gem "nifty-generators"

@@ -21,7 +21,7 @@ class EventNewsItem < ActiveRecord::Base
   end
   
   def url
-    "/news/#{slug}"
+    "#{Rails.application.routes.url_helpers.event_news_items_path}/#{slug}"
   end
   
   liquid_methods :headline, :content, :date, :url

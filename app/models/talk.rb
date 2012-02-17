@@ -11,8 +11,18 @@ class Talk < ActiveRecord::Base
   
   scope :published, where(:published => true)
   
+  liquid_methods :display_title, :description, :url, :speakers, :track
+  
+  def url
+    "#{Rails.application.routes.url_helpers.talks_path}/#{slug}"
+  end
+  
   def first_ten_words
     title.split(/\s+/)[0..9].compact.join(" ")
+  end
+  
+  def date
+    start.to_date
   end
   
   def display_title

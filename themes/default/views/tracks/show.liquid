@@ -1,12 +1,12 @@
--title @track.title
+<!--title @track.title-->
 
-%h3= @track.title
-= simple_format @track.description
-%table.programme
+<h3>{{ track.title }}
+{{ track.formatted_description }}
+<table>
   -@old_date = nil
   -for talk in @track.published_talks
     -if talk.start.to_date != @old_date
-      %tr
+      <tr>
         %td{:colspan => 4}= h talk.start.to_date.to_s(:short)
     - @old_date = talk.start.to_date
     %tr

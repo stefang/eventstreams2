@@ -6,13 +6,21 @@ class TalksController < ApplicationController
   def index
     get_published_or_owned_event
     @talks = @event.talks.find(:all, :conditions => "published = true")
+    render :locals => { 
+      :event_logo_url_tiny => @event.event_logo.url(:tiny),
+      :event_stylesheet_screen => current_theme_stylesheet_path('event'),
+      :event_stylesheet_print => current_theme_stylesheet_path('print')
+    }
   end
   
   def show
     get_published_or_owned_event
-    @event_pages = @event.event_pages.published.find(:all, :conditions => "published = true")
     @talk = @event.talks.published.find(params[:id])
-    @speakers = @talk.speakers.published.find(:all, :conditions => "published = true")
+    render :locals => { 
+      :event_logo_url_tiny => @event.event_logo.url(:tiny),
+      :event_stylesheet_screen => current_theme_stylesheet_path('event'),
+      :event_stylesheet_print => current_theme_stylesheet_path('print')
+    }
   end
 
 end

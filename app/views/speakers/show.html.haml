@@ -1,9 +1,0 @@
-- title "#{@speaker.name} | #{@event.title}" 
-
-%article.speaker
-  = image_tag @speaker.portrait.url(:thumb), :alt => @speaker.name, :title => @speaker.name
-  %h4= @speaker.name
-  = @speaker.biog
-  %ul.talks
-    - for talk in @speaker.talks
-      %li= link_to talk.title, talk
