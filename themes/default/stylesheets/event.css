@@ -151,3 +151,19 @@ section, article, header, footer, nav, aside {
 header[role=banner] img {
   float: left;
   margin-right: 10px; }
+header[role=banner] nav {
+  overflow: auto;
+  margin-bottom: 20px; }
+  header[role=banner] nav ul li {
+    float: left; }
+    header[role=banner] nav ul li a {
+      display: block;
+      padding: 3px 6px;
+      background: #f1f1f1;
+      margin-right: 1px;
+      color: #333333; }
+      header[role=banner] nav ul li a:hover {
+        background: #dddddd; }
+
+section[role=content] {
+  clear: both; }
